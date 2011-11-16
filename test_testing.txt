@@ -1,0 +1,961 @@
+flags:                  0  ( megatest default learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.001  overall_pR: -3.180423  bestmatch_index: 1  unk_features: 48
+   0 S (Macbeth ): documents: 1  features: 15880  hits:     1  prob: 0.001  pR: -3.180
+   1 F (Alice   ): documents: 1  features: 17136  hits:    33  prob: 0.999  pR:  3.180
+Macbeth_frag_megatest : 
+Tot succ prob: 0.883  overall_pR: 0.878710  bestmatch_index: 0  unk_features: 40
+   0 S (Macbeth ): documents: 1  features: 15880  hits:     9  prob: 0.883  pR:  0.879
+   1 F (Alice   ): documents: 1  features: 17136  hits:     1  prob: 0.117  pR: -0.879
+
+flags:           0x400000  ( megatest OSB Markov learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.001  overall_pR: -3.180423  bestmatch_index: 1  unk_features: 48
+   0 S (Macbeth ): documents: 1  features: 15880  hits:     1  prob: 0.001  pR: -3.180
+   1 F (Alice   ): documents: 1  features: 17136  hits:    33  prob: 0.999  pR:  3.180
+Macbeth_frag_megatest : 
+Tot succ prob: 0.883  overall_pR: 0.878710  bestmatch_index: 0  unk_features: 40
+   0 S (Macbeth ): documents: 1  features: 15880  hits:     9  prob: 0.883  pR:  0.879
+   1 F (Alice   ): documents: 1  features: 17136  hits:     1  prob: 0.117  pR: -0.879
+
+flags:          0x4400000  ( megatest OSB Markov unique learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.001  overall_pR: -3.136544  bestmatch_index: 1  unk_features: 48
+   0 S (Macbeth ): documents: 1  features: 15046  hits:     1  prob: 0.001  pR: -3.137
+   1 F (Alice   ): documents: 1  features: 14992  hits:    33  prob: 0.999  pR:  3.137
+Macbeth_frag_megatest : 
+Tot succ prob: 0.861  overall_pR: 0.792785  bestmatch_index: 0  unk_features: 40
+   0 S (Macbeth ): documents: 1  features: 15046  hits:     9  prob: 0.861  pR:  0.793
+   1 F (Alice   ): documents: 1  features: 14992  hits:     1  prob: 0.139  pR: -0.793
+
+flags:          0x6400000  ( megatest OSB Markov unique chi squared learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.000  overall_pR: -6.074056  bestmatch_index: 1  unk_features: 48
+   0 S (Macbeth ): documents: 1  features: 15046  hits:     1  prob: 0.000  pR: -6.074 chi2:   32.029
+   1 F (Alice   ): documents: 1  features: 14992  hits:    33  prob: 1.000  pR:  6.074 chi2:    0.029
+Macbeth_frag_megatest : 
+Tot succ prob: 0.824  overall_pR: 0.669964  bestmatch_index: 0  unk_features: 40
+   0 S (Macbeth ): documents: 1  features: 15046  hits:     9  prob: 0.824  pR:  0.670 chi2:   11.115
+   1 F (Alice   ): documents: 1  features: 14992  hits:     1  prob: 0.176  pR: -0.670 chi2:   24.038
+
+flags:         0x40000000  ( megatest default unigram learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.100  overall_pR: -0.952375  bestmatch_index: 1  unk_features: 12
+   0 S (Macbeth ): documents: 1  features: 3970  hits:     5  prob: 0.100  pR: -0.952
+   1 F (Alice   ): documents: 1  features: 4284  hits:    12  prob: 0.900  pR:  0.952
+Macbeth_frag_megatest : 
+Tot succ prob: 0.805  overall_pR: 0.615133  bestmatch_index: 0  unk_features: 10
+   0 S (Macbeth ): documents: 1  features: 3970  hits:     8  prob: 0.805  pR:  0.615
+   1 F (Alice   ): documents: 1  features: 4284  hits:     2  prob: 0.195  pR: -0.615
+
+flags:         0x60000000  ( megatest hyperspace 3-letter regex unigram learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.248  overall_pR: -0.482797  bestmatch_index: 1  unk_features: 12
+   0 S (Macbeth ): documents: 1  features: 4347  hits:     7  prob: 0.248  pR: -0.483 radiance: 1.127e-02
+   1 F (Alice   ): documents: 1  features: 4213  hits:    12  prob: 0.752  pR:  0.483 radiance: 3.426e-02
+Macbeth_frag_megatest : 
+Tot succ prob: 0.730  overall_pR: 0.431297  bestmatch_index: 0  unk_features: 15
+   0 S (Macbeth ): documents: 1  features: 4347  hits:    15  prob: 0.730  pR:  0.431 radiance: 5.192e-02
+   1 F (Alice   ): documents: 1  features: 4213  hits:     9  prob: 0.270  pR: -0.431 radiance: 1.923e-02
+
+flags:         0x20000800  ( megatest hyperspace string learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.089  overall_pR: -1.009513  bestmatch_index: 1  unk_features: 62
+   0 S (Macbeth ): documents: 1  features: 22669  hits:    17  prob: 0.089  pR: -1.010 radiance: 1.273e-02
+   1 F (Alice   ): documents: 1  features: 22451  hits:    54  prob: 0.911  pR:  1.010 radiance: 1.301e-01
+Macbeth_frag_megatest : 
+Tot succ prob: 0.840  overall_pR: 0.720261  bestmatch_index: 0  unk_features: 73
+   0 S (Macbeth ): documents: 1  features: 22669  hits:    46  prob: 0.840  pR:  0.720 radiance: 9.341e-02
+   1 F (Alice   ): documents: 1  features: 22451  hits:    20  prob: 0.160  pR: -0.720 radiance: 1.779e-02
+
+flags:         0x60000800  ( megatest hyperspace string unigram learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.498  overall_pR: -0.004208  bestmatch_index: 1  unk_features: 62
+   0 S (Macbeth ): documents: 1  features: 22669  hits:    62  prob: 0.498  pR: -0.004 radiance: 1.700e-01
+   1 F (Alice   ): documents: 1  features: 22451  hits:    62  prob: 0.502  pR:  0.004 radiance: 1.717e-01
+Macbeth_frag_megatest : 
+Tot succ prob: 0.498  overall_pR: -0.004210  bestmatch_index: 1  unk_features: 73
+   0 S (Macbeth ): documents: 1  features: 22669  hits:    73  prob: 0.498  pR: -0.004 radiance: 2.358e-01
+   1 F (Alice   ): documents: 1  features: 22451  hits:    73  prob: 0.502  pR:  0.004 radiance: 2.381e-01
+
+flags:         0x20000000  ( megatest hyperspace 3-word matrix learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.000  overall_pR: -999.000000  bestmatch_index: 1  unk_features: 12
+   0 S (Macbeth ): documents: 1  features: 3970  hits:     0  prob: 0.000  pR: -999.000 radiance: 0.000e+00
+   1 F (Alice   ): documents: 1  features: 4284  hits:     8  prob: 1.000  pR:  999.000 radiance: 1.495e-02
+Macbeth_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 10
+   0 S (Macbeth ): documents: 1  features: 3970  hits:     1  prob: 1.000  pR:  999.000 radiance: 2.513e-04
+   1 F (Alice   ): documents: 1  features: 4284  hits:     0  prob: 0.000  pR: -999.000 radiance: 0.000e+00
+
+flags:         0x8c000000  ( megatest bit entropy unique crosslink learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.000  overall_pR: -12.001360  bestmatch_index: 1  unk_features: 496
+   0 S (Macbeth ): documents: 1  features: 181352  hits:   465  prob: 0.000  pR: -12.001 jumps:  31 entropy:  434.779
+   1 F (Alice   ): documents: 1  features: 179608  hits:   491  prob: 1.000  pR:  12.001 jumps:   5 entropy:  144.839
+Macbeth_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 6.328474  bestmatch_index: 0  unk_features: 584
+   0 S (Macbeth ): documents: 1  features: 181352  hits:   555  prob: 1.000  pR:  6.328 jumps:  29 entropy:  385.058
+   1 F (Alice   ): documents: 1  features: 179608  hits:   545  prob: 0.000  pR: -6.328 jumps:  39 entropy:  537.947
+
+flags:          0x8000000  ( megatest bit entropy toroid learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.000  overall_pR: -7.520598  bestmatch_index: 1  unk_features: 496
+   0 S (Macbeth ): documents: 1  features: 181352  hits:   463  prob: 0.000  pR: -7.521 jumps:  33 entropy:  464.921
+   1 F (Alice   ): documents: 1  features: 179608  hits:   483  prob: 1.000  pR:  7.521 jumps:  13 entropy:  283.232
+Macbeth_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 5.181079  bestmatch_index: 0  unk_features: 584
+   0 S (Macbeth ): documents: 1  features: 181352  hits:   543  prob: 1.000  pR:  5.181 jumps:  41 entropy:  550.166
+   1 F (Alice   ): documents: 1  features: 179608  hits:   531  prob: 0.000  pR: -5.181 jumps:  53 entropy:  675.335
+
+flags:       0x1000000000  ( megatest FSCM learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.127  overall_pR: -0.836328  bestmatch_index: 1  unk_features: 0
+   0 S (Macbeth ): documents: 1  features: 22669  hits:    62  prob: 0.127  pR: -0.836 compression:   30.396
+   1 F (Alice   ): documents: 1  features: 22451  hits:    62  prob: 0.873  pR:  0.836 compression:  208.520
+Macbeth_frag_megatest : 
+Tot succ prob: 0.714  overall_pR: 0.397956  bestmatch_index: 0  unk_features: 0
+   0 S (Macbeth ): documents: 1  features: 22669  hits:    73  prob: 0.714  pR:  0.398 compression:  138.324
+   1 F (Alice   ): documents: 1  features: 22451  hits:    73  prob: 0.286  pR: -0.398 compression:   55.328
+
+flags:       0x8044000000  ( megatest PCA unigram unique learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.469  overall_pR: -62.373333  bestmatch_index: 1  unk_features: 12
+   0 S (Macbeth ): documents: 1  features: 1791  hits:     0  prob: 0.469  pR: -62.373
+   1 F (Alice   ): documents: 1  features: 1404  hits:     7  prob: 0.531  pR:  62.373
+Macbeth_frag_megatest : 
+Tot succ prob: 0.527  overall_pR: 53.462857  bestmatch_index: 0  unk_features: 9
+   0 S (Macbeth ): documents: 1  features: 1791  hits:     6  prob: 0.527  pR:  53.463
+   1 F (Alice   ): documents: 1  features: 1404  hits:     0  prob: 0.473  pR: -53.463
+
+flags:       0x8004000000  ( megatest PCA unique learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.420  overall_pR: -161.566715  bestmatch_index: 1  unk_features: 48
+   0 S (Macbeth ): documents: 1  features: 15046  hits:     0  prob: 0.420  pR: -161.567
+   1 F (Alice   ): documents: 1  features: 14992  hits:    32  prob: 0.580  pR:  161.567
+Macbeth_frag_megatest : 
+Tot succ prob: 0.520  overall_pR: 40.391679  bestmatch_index: 0  unk_features: 40
+   0 S (Macbeth ): documents: 1  features: 15046  hits:     8  prob: 0.520  pR:  40.392
+   1 F (Alice   ): documents: 1  features: 14992  hits:     0  prob: 0.480  pR: -40.392
+
+flags:         0x40400000  ( like megatest OSB Markov unigram learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.100  overall_pR: -0.952375  bestmatch_index: 1  unk_features: 12
+   0 S (Macbeth ): documents: 1  features: 3970  hits:     5  prob: 0.100  pR: -0.952
+   1 F (Alice   ): documents: 1  features: 4284  hits:    12  prob: 0.900  pR:  0.952
+Macbeth_frag_megatest : 
+Tot succ prob: 0.805  overall_pR: 0.615133  bestmatch_index: 0  unk_features: 10
+   0 S (Macbeth ): documents: 1  features: 3970  hits:     8  prob: 0.805  pR:  0.615
+   1 F (Alice   ): documents: 1  features: 4284  hits:     2  prob: 0.195  pR: -0.615
+
+flags:         0x20000000  ( like megatest hyperspace learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.001  overall_pR: -3.005685  bestmatch_index: 1  unk_features: 48
+   0 S (Macbeth ): documents: 1  features: 15880  hits:     1  prob: 0.001  pR: -3.006 radiance: 6.278e-05
+   1 F (Alice   ): documents: 1  features: 17136  hits:    33  prob: 0.999  pR:  3.006 radiance: 6.361e-02
+Macbeth_frag_megatest : 
+Tot succ prob: 0.989  overall_pR: 1.941901  bestmatch_index: 0  unk_features: 40
+   0 S (Macbeth ): documents: 1  features: 15880  hits:     9  prob: 0.989  pR:  1.942 radiance: 5.093e-03
+   1 F (Alice   ): documents: 1  features: 17136  hits:     1  prob: 0.011  pR: -1.942 radiance: 5.822e-05
+
+flags:        0x844000000  ( like megatest SVM unigram unique learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.497  overall_pR: -0.016910  bestmatch_index: 1  unk_features: 12
+   0 S (Macbeth ): documents: 1  features: 1791  hits:     0  prob: 0.497  pR: -0.017
+   1 F (Alice   ): documents: 1  features: 1404  hits:    12  prob: 0.503  pR:  0.017
+Macbeth_frag_megatest : 
+Tot succ prob: 0.502  overall_pR: 0.009392  bestmatch_index: 0  unk_features: 9
+   0 S (Macbeth ): documents: 1  features: 1791  hits:     6  prob: 0.502  pR:  0.009
+   1 F (Alice   ): documents: 1  features: 1404  hits:     1  prob: 0.498  pR: -0.009
+
+flags:        0x804000000  ( like megatest SVM unique learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.499  overall_pR: -0.005264  bestmatch_index: 1  unk_features: 48
+   0 S (Macbeth ): documents: 1  features: 15046  hits:     0  prob: 0.499  pR: -0.005
+   1 F (Alice   ): documents: 1  features: 14992  hits:    32  prob: 0.501  pR:  0.005
+Macbeth_frag_megatest : 
+Tot succ prob: 0.500  overall_pR: 0.001314  bestmatch_index: 0  unk_features: 40
+   0 S (Macbeth ): documents: 1  features: 15046  hits:     8  prob: 0.500  pR:  0.001
+   1 F (Alice   ): documents: 1  features: 14992  hits:     0  prob: 0.500  pR: -0.001
+
+flags:        0x800000000  ( like megatest SVM learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.499  overall_pR: -0.002962  bestmatch_index: 1  unk_features: 48
+   0 S (Macbeth ): documents: 1  features: 15880  hits:     0  prob: 0.499  pR: -0.003
+   1 F (Alice   ): documents: 1  features: 17136  hits:    33  prob: 0.501  pR:  0.003
+Macbeth_frag_megatest : 
+Tot succ prob: 0.501  overall_pR: 0.003690  bestmatch_index: 0  unk_features: 40
+   0 S (Macbeth ): documents: 1  features: 15880  hits:     9  prob: 0.501  pR:  0.004
+   1 F (Alice   ): documents: 1  features: 17136  hits:     0  prob: 0.499  pR: -0.004
+
+flags:       0x8000000000  ( like megatest PCA learn round robin )
+Alice_frag_megatest : 
+Tot succ prob: 0.425  overall_pR: -151.724606  bestmatch_index: 1  unk_features: 48
+   0 S (Macbeth ): documents: 1  features: 15880  hits:     0  prob: 0.425  pR: -151.725
+   1 F (Alice   ): documents: 1  features: 17136  hits:    33  prob: 0.575  pR:  151.725
+Macbeth_frag_megatest : 
+Tot succ prob: 0.555  overall_pR: 109.578882  bestmatch_index: 0  unk_features: 40
+   0 S (Macbeth ): documents: 1  features: 15880  hits:     9  prob: 0.555  pR:  109.579
+   1 F (Alice   ): documents: 1  features: 17136  hits:     0  prob: 0.445  pR: -109.579
+
+flags:           0x400000  ( adult/child OSB Bayes learn round robin )
+Alice_frag : 
+Tot succ prob: 1.000  overall_pR: 18.830042  bestmatch_index: 0  unk_features: 220
+   0 S (child   ): documents: 2  features: 34352  hits:   210  prob: 1.000  pR:  18.830
+   1 F (adult   ): documents: 2  features: 31936  hits:    23  prob: 0.000  pR: -18.830
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 15.739973  bestmatch_index: 0  unk_features: 216
+   0 S (child   ): documents: 2  features: 34352  hits:   176  prob: 1.000  pR:  15.740
+   1 F (adult   ): documents: 2  features: 31936  hits:    21  prob: 0.000  pR: -15.740
+Alice_frag_megatest : 
+Tot succ prob: 0.999  overall_pR: 3.276611  bestmatch_index: 0  unk_features: 48
+   0 S (child   ): documents: 2  features: 34352  hits:    34  prob: 0.999  pR:  3.277
+   1 F (adult   ): documents: 2  features: 31936  hits:     1  prob: 0.001  pR: -3.277
+Hound_frag : 
+Tot succ prob: 0.000  overall_pR: -13.413421  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    35  prob: 0.000  pR: -13.413
+   1 F (adult   ): documents: 2  features: 31936  hits:   170  prob: 1.000  pR:  13.413
+Hound_frag_twisted : 
+Tot succ prob: 0.000  overall_pR: -12.119603  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    35  prob: 0.000  pR: -12.120
+   1 F (adult   ): documents: 2  features: 31936  hits:   157  prob: 1.000  pR:  12.120
+Hound_frag_short_twisted : 
+Tot succ prob: 0.043  overall_pR: -1.347928  bestmatch_index: 1  unk_features: 32
+   0 S (child   ): documents: 2  features: 34352  hits:     2  prob: 0.043  pR: -1.348
+   1 F (adult   ): documents: 2  features: 31936  hits:    14  prob: 0.957  pR:  1.348
+Macbeth_frag_megatest : 
+Tot succ prob: 0.142  overall_pR: -0.781157  bestmatch_index: 1  unk_features: 40
+   0 S (child   ): documents: 2  features: 34352  hits:     1  prob: 0.142  pR: -0.781
+   1 F (adult   ): documents: 2  features: 31936  hits:     9  prob: 0.858  pR:  0.781
+Willows_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 7.469236  bestmatch_index: 0  unk_features: 112
+   0 S (child   ): documents: 2  features: 34352  hits:    87  prob: 1.000  pR:  7.469
+   1 F (adult   ): documents: 2  features: 31936  hits:    15  prob: 0.000  pR: -7.469
+
+flags:         0x8c000000  ( adult/child bit entropy unique crosslink learn round robin )
+Alice_frag : 
+Tot succ prob: 1.000  overall_pR: 30.843141  bestmatch_index: 0  unk_features: 2320
+   0 S (child   ): documents: 2  features: 370192  hits:  2315  prob: 1.000  pR:  30.843 jumps:   5 entropy:  620.871
+   1 F (adult   ): documents: 2  features: 368256  hits:  2248  prob: 0.000  pR: -30.843 jumps:  72 entropy: 1366.006
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 30.158951  bestmatch_index: 0  unk_features: 2320
+   0 S (child   ): documents: 2  features: 370192  hits:  2260  prob: 1.000  pR:  30.159 jumps:  60 entropy: 1138.657
+   1 F (adult   ): documents: 2  features: 368256  hits:  2194  prob: 0.000  pR: -30.159 jumps: 126 entropy: 1867.263
+Alice_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 6.902026  bestmatch_index: 0  unk_features: 496
+   0 S (child   ): documents: 2  features: 370192  hits:   489  prob: 1.000  pR:  6.902 jumps:   7 entropy:  188.798
+   1 F (adult   ): documents: 2  features: 368256  hits:   474  prob: 0.000  pR: -6.902 jumps:  22 entropy:  355.543
+Hound_frag : 
+Tot succ prob: 0.000  overall_pR: -16.313501  bestmatch_index: 1  unk_features: 1712
+   0 S (child   ): documents: 2  features: 370192  hits:  1669  prob: 0.000  pR: -16.314 jumps:  43 entropy:  873.612
+   1 F (adult   ): documents: 2  features: 368256  hits:  1705  prob: 1.000  pR:  16.314 jumps:   7 entropy:  479.497
+Hound_frag_twisted : 
+Tot succ prob: 0.000  overall_pR: -11.452826  bestmatch_index: 1  unk_features: 1704
+   0 S (child   ): documents: 2  features: 370192  hits:  1636  prob: 0.000  pR: -11.453 jumps:  68 entropy: 1101.297
+   1 F (adult   ): documents: 2  features: 368256  hits:  1662  prob: 1.000  pR:  11.453 jumps:  42 entropy:  824.610
+Hound_frag_short_twisted : 
+Tot succ prob: 0.000  overall_pR: -5.161936  bestmatch_index: 1  unk_features: 304
+   0 S (child   ): documents: 2  features: 370192  hits:   288  prob: 0.000  pR: -5.162 jumps:  16 entropy:  238.115
+   1 F (adult   ): documents: 2  features: 368256  hits:   299  prob: 1.000  pR:  5.162 jumps:   5 entropy:  113.409
+Macbeth_frag_megatest : 
+Tot succ prob: 0.000  overall_pR: -7.074389  bestmatch_index: 1  unk_features: 584
+   0 S (child   ): documents: 2  features: 370192  hits:   554  prob: 0.000  pR: -7.074 jumps:  30 entropy:  461.803
+   1 F (adult   ): documents: 2  features: 368256  hits:   569  prob: 1.000  pR:  7.074 jumps:  15 entropy:  290.894
+Willows_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 8.292493  bestmatch_index: 0  unk_features: 1208
+   0 S (child   ): documents: 2  features: 370192  hits:  1198  prob: 1.000  pR:  8.292 jumps:  10 entropy:  415.345
+   1 F (adult   ): documents: 2  features: 368256  hits:  1180  prob: 0.000  pR: -8.292 jumps:  28 entropy:  615.682
+
+flags:         0x20000000  ( adult/child hyperspace learn round robin )
+Alice_frag : 
+Tot succ prob: 0.987  overall_pR: 1.891814  bestmatch_index: 0  unk_features: 220
+   0 S (child   ): documents: 2  features: 34352  hits:   226  prob: 0.987  pR:  1.892 radiance: 2.618e+00
+   1 F (adult   ): documents: 2  features: 31936  hits:    32  prob: 0.013  pR: -1.892 radiance: 3.359e-02
+Alice_frag_twisted : 
+Tot succ prob: 0.985  overall_pR: 1.824185  bestmatch_index: 0  unk_features: 216
+   0 S (child   ): documents: 2  features: 34352  hits:   190  prob: 0.985  pR:  1.824 radiance: 1.833e+00
+   1 F (adult   ): documents: 2  features: 31936  hits:    29  prob: 0.015  pR: -1.824 radiance: 2.748e-02
+Alice_frag_megatest : 
+Tot succ prob: 0.998  overall_pR: 2.708614  bestmatch_index: 0  unk_features: 48
+   0 S (child   ): documents: 2  features: 34352  hits:    35  prob: 0.998  pR:  2.709 radiance: 6.384e-02
+   1 F (adult   ): documents: 2  features: 31936  hits:     2  prob: 0.002  pR: -2.709 radiance: 1.249e-04
+Hound_frag : 
+Tot succ prob: 0.034  overall_pR: -1.457167  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    47  prob: 0.034  pR: -1.457 radiance: 6.450e-02
+   1 F (adult   ): documents: 2  features: 31936  hits:   192  prob: 0.966  pR:  1.457 radiance: 1.848e+00
+Hound_frag_twisted : 
+Tot succ prob: 0.039  overall_pR: -1.388595  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    47  prob: 0.039  pR: -1.389 radiance: 6.450e-02
+   1 F (adult   ): documents: 2  features: 31936  hits:   179  prob: 0.961  pR:  1.389 radiance: 1.578e+00
+Hound_frag_short_twisted : 
+Tot succ prob: 0.018  overall_pR: -1.738748  bestmatch_index: 1  unk_features: 32
+   0 S (child   ): documents: 2  features: 34352  hits:     2  prob: 0.018  pR: -1.739 radiance: 2.330e-04
+   1 F (adult   ): documents: 2  features: 31936  hits:    17  prob: 0.982  pR:  1.739 radiance: 1.277e-02
+Macbeth_frag_megatest : 
+Tot succ prob: 0.022  overall_pR: -1.647144  bestmatch_index: 1  unk_features: 40
+   0 S (child   ): documents: 2  features: 34352  hits:     2  prob: 0.022  pR: -1.647 radiance: 1.162e-04
+   1 F (adult   ): documents: 2  features: 31936  hits:    10  prob: 0.978  pR:  1.647 radiance: 5.155e-03
+Willows_frag_twisted : 
+Tot succ prob: 0.970  overall_pR: 1.513073  bestmatch_index: 0  unk_features: 112
+   0 S (child   ): documents: 2  features: 34352  hits:    98  prob: 0.970  pR:  1.513 radiance: 4.482e-01
+   1 F (adult   ): documents: 2  features: 31936  hits:    21  prob: 0.030  pR: -1.513 radiance: 1.375e-02
+
+flags:        0x800000000  ( adult/child SVM learn round robin )
+Alice_frag : 
+Tot succ prob: 0.505  overall_pR: 0.021931  bestmatch_index: 0  unk_features: 220
+   0 S (child   ): documents: 2  features: 34352  hits:   199  prob: 0.505  pR:  0.022
+   1 F (adult   ): documents: 2  features: 31936  hits:    11  prob: 0.495  pR: -0.022
+Alice_frag_twisted : 
+Tot succ prob: 0.504  overall_pR: 0.019487  bestmatch_index: 0  unk_features: 216
+   0 S (child   ): documents: 2  features: 34352  hits:   167  prob: 0.504  pR:  0.019
+   1 F (adult   ): documents: 2  features: 31936  hits:     9  prob: 0.496  pR: -0.019
+Alice_frag_megatest : 
+Tot succ prob: 0.501  overall_pR: 0.003213  bestmatch_index: 0  unk_features: 48
+   0 S (child   ): documents: 2  features: 34352  hits:    34  prob: 0.501  pR:  0.003
+   1 F (adult   ): documents: 2  features: 31936  hits:     0  prob: 0.499  pR: -0.003
+Hound_frag : 
+Tot succ prob: 0.493  overall_pR: -0.032424  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    12  prob: 0.493  pR: -0.032
+   1 F (adult   ): documents: 2  features: 31936  hits:   158  prob: 0.507  pR:  0.032
+Hound_frag_twisted : 
+Tot succ prob: 0.494  overall_pR: -0.030123  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    12  prob: 0.494  pR: -0.030
+   1 F (adult   ): documents: 2  features: 31936  hits:   145  prob: 0.506  pR:  0.030
+Hound_frag_short_twisted : 
+Tot succ prob: 0.499  overall_pR: -0.003831  bestmatch_index: 1  unk_features: 32
+   0 S (child   ): documents: 2  features: 34352  hits:     0  prob: 0.499  pR: -0.004
+   1 F (adult   ): documents: 2  features: 31936  hits:    14  prob: 0.501  pR:  0.004
+Macbeth_frag_megatest : 
+Tot succ prob: 0.500  overall_pR: -0.001823  bestmatch_index: 1  unk_features: 40
+   0 S (child   ): documents: 2  features: 34352  hits:     1  prob: 0.500  pR: -0.002
+   1 F (adult   ): documents: 2  features: 31936  hits:     8  prob: 0.500  pR:  0.002
+Willows_frag_twisted : 
+Tot succ prob: 0.502  overall_pR: 0.011712  bestmatch_index: 0  unk_features: 112
+   0 S (child   ): documents: 2  features: 34352  hits:    82  prob: 0.502  pR:  0.012
+   1 F (adult   ): documents: 2  features: 31936  hits:     5  prob: 0.498  pR: -0.012
+
+flags:       0x8000000000  ( adult/child PCA learn round robin )
+Alice_frag : 
+Tot succ prob: 0.881  overall_pR: 999.677376  bestmatch_index: 0  unk_features: 220
+   0 S (child   ): documents: 2  features: 34352  hits:   205  prob: 0.881  pR:  999.677
+   1 F (adult   ): documents: 2  features: 31936  hits:     5  prob: 0.119  pR: -999.677
+Alice_frag_twisted : 
+Tot succ prob: 0.855  overall_pR: 885.905280  bestmatch_index: 0  unk_features: 216
+   0 S (child   ): documents: 2  features: 34352  hits:   172  prob: 0.855  pR:  885.905
+   1 F (adult   ): documents: 2  features: 31936  hits:     4  prob: 0.145  pR: -885.905
+Alice_frag_megatest : 
+Tot succ prob: 0.564  overall_pR: 128.541738  bestmatch_index: 0  unk_features: 48
+   0 S (child   ): documents: 2  features: 34352  hits:    34  prob: 0.564  pR:  128.542
+   1 F (adult   ): documents: 2  features: 31936  hits:     0  prob: 0.436  pR: -128.542
+Hound_frag : 
+Tot succ prob: 0.257  overall_pR: -531.790942  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    16  prob: 0.257  pR: -531.791
+   1 F (adult   ): documents: 2  features: 31936  hits:   154  prob: 0.743  pR:  531.791
+Hound_frag_twisted : 
+Tot succ prob: 0.273  overall_pR: -488.771359  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    16  prob: 0.273  pR: -488.771
+   1 F (adult   ): documents: 2  features: 31936  hits:   141  prob: 0.727  pR:  488.771
+Hound_frag_short_twisted : 
+Tot succ prob: 0.465  overall_pR: -70.596669  bestmatch_index: 1  unk_features: 32
+   0 S (child   ): documents: 2  features: 34352  hits:     0  prob: 0.465  pR: -70.597
+   1 F (adult   ): documents: 2  features: 31936  hits:    14  prob: 0.535  pR:  70.597
+Macbeth_frag_megatest : 
+Tot succ prob: 0.478  overall_pR: -43.634567  bestmatch_index: 1  unk_features: 40
+   0 S (child   ): documents: 2  features: 34352  hits:     1  prob: 0.478  pR: -43.635
+   1 F (adult   ): documents: 2  features: 31936  hits:     8  prob: 0.522  pR:  43.635
+Willows_frag_twisted : 
+Tot succ prob: 0.644  overall_pR: 296.244497  bestmatch_index: 0  unk_features: 112
+   0 S (child   ): documents: 2  features: 34352  hits:    82  prob: 0.644  pR:  296.244
+   1 F (adult   ): documents: 2  features: 31936  hits:     5  prob: 0.356  pR: -296.244
+
+flags:       0x1000000000  ( adult/child FSCM learn round robin )
+Alice_frag : 
+Tot succ prob: 0.840  overall_pR: 0.720928  bestmatch_index: 0  unk_features: 0
+   0 S (child   ): documents: 2  features: 46274  hits:   290  prob: 0.840  pR:  0.721 compression: 2109.781
+   1 F (adult   ): documents: 2  features: 46032  hits:   290  prob: 0.160  pR: -0.721 compression:  401.152
+Alice_frag_twisted : 
+Tot succ prob: 0.789  overall_pR: 0.573843  bestmatch_index: 0  unk_features: 0
+   0 S (child   ): documents: 2  features: 46274  hits:   290  prob: 0.789  pR:  0.574 compression: 1451.823
+   1 F (adult   ): documents: 2  features: 46032  hits:   290  prob: 0.211  pR: -0.574 compression:  387.320
+Alice_frag_megatest : 
+Tot succ prob: 0.736  overall_pR: 0.445555  bestmatch_index: 0  unk_features: 0
+   0 S (child   ): documents: 2  features: 46274  hits:    62  prob: 0.736  pR:  0.446 compression:  208.520
+   1 F (adult   ): documents: 2  features: 46032  hits:    62  prob: 0.264  pR: -0.446 compression:   74.747
+Hound_frag : 
+Tot succ prob: 0.265  overall_pR: -0.443760  bestmatch_index: 1  unk_features: 0
+   0 S (child   ): documents: 2  features: 46274  hits:   214  prob: 0.265  pR: -0.444 compression:  351.337
+   1 F (adult   ): documents: 2  features: 46032  hits:   214  prob: 0.735  pR:  0.444 compression:  976.078
+Hound_frag_twisted : 
+Tot succ prob: 0.299  overall_pR: -0.370889  bestmatch_index: 1  unk_features: 0
+   0 S (child   ): documents: 2  features: 46274  hits:   213  prob: 0.299  pR: -0.371 compression:  349.135
+   1 F (adult   ): documents: 2  features: 46032  hits:   213  prob: 0.701  pR:  0.371 compression:  820.129
+Hound_frag_short_twisted : 
+Tot succ prob: 0.330  overall_pR: -0.306700  bestmatch_index: 1  unk_features: 0
+   0 S (child   ): documents: 2  features: 46274  hits:    38  prob: 0.330  pR: -0.307 compression:   46.960
+   1 F (adult   ): documents: 2  features: 46032  hits:    38  prob: 0.670  pR:  0.307 compression:   95.155
+Macbeth_frag_megatest : 
+Tot succ prob: 0.337  overall_pR: -0.294694  bestmatch_index: 1  unk_features: 0
+   0 S (child   ): documents: 2  features: 46274  hits:    73  prob: 0.337  pR: -0.295 compression:   69.160
+   1 F (adult   ): documents: 2  features: 46032  hits:    73  prob: 0.663  pR:  0.295 compression:  136.316
+Willows_frag_twisted : 
+Tot succ prob: 0.723  overall_pR: 0.416964  bestmatch_index: 0  unk_features: 0
+   0 S (child   ): documents: 2  features: 46274  hits:   151  prob: 0.723  pR:  0.417 compression:  586.571
+   1 F (adult   ): documents: 2  features: 46032  hits:   151  prob: 0.277  pR: -0.417 compression:  224.573
+
+flags:           0x400000  ( adult/child OSB Bayes, default regex and matrix learn round robin )
+Alice_frag : 
+Tot succ prob: 1.000  overall_pR: 18.830042  bestmatch_index: 0  unk_features: 220
+   0 S (child   ): documents: 2  features: 34352  hits:   210  prob: 1.000  pR:  18.830
+   1 F (adult   ): documents: 2  features: 31936  hits:    23  prob: 0.000  pR: -18.830
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 15.739973  bestmatch_index: 0  unk_features: 216
+   0 S (child   ): documents: 2  features: 34352  hits:   176  prob: 1.000  pR:  15.740
+   1 F (adult   ): documents: 2  features: 31936  hits:    21  prob: 0.000  pR: -15.740
+Alice_frag_megatest : 
+Tot succ prob: 0.999  overall_pR: 3.276611  bestmatch_index: 0  unk_features: 48
+   0 S (child   ): documents: 2  features: 34352  hits:    34  prob: 0.999  pR:  3.277
+   1 F (adult   ): documents: 2  features: 31936  hits:     1  prob: 0.001  pR: -3.277
+Hound_frag : 
+Tot succ prob: 0.000  overall_pR: -13.413421  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    35  prob: 0.000  pR: -13.413
+   1 F (adult   ): documents: 2  features: 31936  hits:   170  prob: 1.000  pR:  13.413
+Hound_frag_twisted : 
+Tot succ prob: 0.000  overall_pR: -12.119603  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    35  prob: 0.000  pR: -12.120
+   1 F (adult   ): documents: 2  features: 31936  hits:   157  prob: 1.000  pR:  12.120
+Hound_frag_short_twisted : 
+Tot succ prob: 0.043  overall_pR: -1.347928  bestmatch_index: 1  unk_features: 32
+   0 S (child   ): documents: 2  features: 34352  hits:     2  prob: 0.043  pR: -1.348
+   1 F (adult   ): documents: 2  features: 31936  hits:    14  prob: 0.957  pR:  1.348
+Macbeth_frag_megatest : 
+Tot succ prob: 0.142  overall_pR: -0.781157  bestmatch_index: 1  unk_features: 40
+   0 S (child   ): documents: 2  features: 34352  hits:     1  prob: 0.142  pR: -0.781
+   1 F (adult   ): documents: 2  features: 31936  hits:     9  prob: 0.858  pR:  0.781
+Willows_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 7.469236  bestmatch_index: 0  unk_features: 112
+   0 S (child   ): documents: 2  features: 34352  hits:    87  prob: 1.000  pR:  7.469
+   1 F (adult   ): documents: 2  features: 31936  hits:    15  prob: 0.000  pR: -7.469
+
+flags:           0x400000  ( adult/child OSB Bayes, supply regex & matrix same as defaults learn round robin )
+Alice_frag : 
+Tot succ prob: 1.000  overall_pR: 18.830042  bestmatch_index: 0  unk_features: 220
+   0 S (child   ): documents: 2  features: 34352  hits:   210  prob: 1.000  pR:  18.830
+   1 F (adult   ): documents: 2  features: 31936  hits:    23  prob: 0.000  pR: -18.830
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 15.739973  bestmatch_index: 0  unk_features: 216
+   0 S (child   ): documents: 2  features: 34352  hits:   176  prob: 1.000  pR:  15.740
+   1 F (adult   ): documents: 2  features: 31936  hits:    21  prob: 0.000  pR: -15.740
+Alice_frag_megatest : 
+Tot succ prob: 0.999  overall_pR: 3.276611  bestmatch_index: 0  unk_features: 48
+   0 S (child   ): documents: 2  features: 34352  hits:    34  prob: 0.999  pR:  3.277
+   1 F (adult   ): documents: 2  features: 31936  hits:     1  prob: 0.001  pR: -3.277
+Hound_frag : 
+Tot succ prob: 0.000  overall_pR: -13.413421  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    35  prob: 0.000  pR: -13.413
+   1 F (adult   ): documents: 2  features: 31936  hits:   170  prob: 1.000  pR:  13.413
+Hound_frag_twisted : 
+Tot succ prob: 0.000  overall_pR: -12.119603  bestmatch_index: 1  unk_features: 180
+   0 S (child   ): documents: 2  features: 34352  hits:    35  prob: 0.000  pR: -12.120
+   1 F (adult   ): documents: 2  features: 31936  hits:   157  prob: 1.000  pR:  12.120
+Hound_frag_short_twisted : 
+Tot succ prob: 0.043  overall_pR: -1.347928  bestmatch_index: 1  unk_features: 32
+   0 S (child   ): documents: 2  features: 34352  hits:     2  prob: 0.043  pR: -1.348
+   1 F (adult   ): documents: 2  features: 31936  hits:    14  prob: 0.957  pR:  1.348
+Macbeth_frag_megatest : 
+Tot succ prob: 0.142  overall_pR: -0.781157  bestmatch_index: 1  unk_features: 40
+   0 S (child   ): documents: 2  features: 34352  hits:     1  prob: 0.142  pR: -0.781
+   1 F (adult   ): documents: 2  features: 31936  hits:     9  prob: 0.858  pR:  0.781
+Willows_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 7.469236  bestmatch_index: 0  unk_features: 112
+   0 S (child   ): documents: 2  features: 34352  hits:    87  prob: 1.000  pR:  7.469
+   1 F (adult   ): documents: 2  features: 31936  hits:    15  prob: 0.000  pR: -7.469
+
+flags:           0x400000  ( four-way OSB Markov learn round robin )
+Alice_frag : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 220
+   0 S (Alice   ): documents: 1  features: 17136  hits:   210  prob: 1.000  pR:  18.002
+   1 S (Hound   ): documents: 1  features: 16056  hits:    21  prob: 0.000  pR: -18.354
+   2 S (Macbeth ): documents: 1  features: 15880  hits:    13  prob: 0.000  pR: -18.892
+   3 S (Willows ): documents: 1  features: 17216  hits:    16  prob: 0.000  pR: -18.372
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 216
+   0 S (Alice   ): documents: 1  features: 17136  hits:   176  prob: 1.000  pR:  14.933
+   1 S (Hound   ): documents: 1  features: 16056  hits:    19  prob: 0.000  pR: -15.313
+   2 S (Macbeth ): documents: 1  features: 15880  hits:    12  prob: 0.000  pR: -15.763
+   3 S (Willows ): documents: 1  features: 17216  hits:    14  prob: 0.000  pR: -15.295
+Alice_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 48
+   0 S (Alice   ): documents: 1  features: 17136  hits:    33  prob: 0.998  pR:  2.646
+   1 S (Hound   ): documents: 1  features: 16056  hits:     1  prob: 0.001  pR: -3.165
+   2 S (Macbeth ): documents: 1  features: 15880  hits:     1  prob: 0.001  pR: -3.165
+   3 S (Willows ): documents: 1  features: 17216  hits:     2  prob: 0.001  pR: -3.051
+Hound_frag : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 180
+   0 S (Alice   ): documents: 1  features: 17136  hits:    21  prob: 0.000  pR: -13.913
+   1 S (Hound   ): documents: 1  features: 16056  hits:   170  prob: 1.000  pR:  13.133
+   2 S (Macbeth ): documents: 1  features: 15880  hits:    22  prob: 0.000  pR: -13.780
+   3 S (Willows ): documents: 1  features: 17216  hits:    26  prob: 0.000  pR: -13.348
+Hound_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 180
+   0 S (Alice   ): documents: 1  features: 17136  hits:    21  prob: 0.000  pR: -12.619
+   1 S (Hound   ): documents: 1  features: 16056  hits:   157  prob: 1.000  pR:  11.839
+   2 S (Macbeth ): documents: 1  features: 15880  hits:    22  prob: 0.000  pR: -12.486
+   3 S (Willows ): documents: 1  features: 17216  hits:    26  prob: 0.000  pR: -12.054
+Hound_frag_short_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 32
+   0 S (Alice   ): documents: 1  features: 17136  hits:     2  prob: 0.048  pR: -1.298
+   1 S (Hound   ): documents: 1  features: 16056  hits:    14  prob: 0.855  pR:  0.771
+   2 S (Macbeth ): documents: 1  features: 15880  hits:     3  prob: 0.055  pR: -1.239
+   3 S (Willows ): documents: 1  features: 17216  hits:     0  prob: 0.042  pR: -1.353
+Macbeth_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 2  unk_features: 40
+   0 S (Alice   ): documents: 1  features: 17136  hits:     1  prob: 0.097  pR: -0.969
+   1 S (Hound   ): documents: 1  features: 16056  hits:     1  prob: 0.096  pR: -0.974
+   2 S (Macbeth ): documents: 1  features: 15880  hits:     9  prob: 0.693  pR:  0.354
+   3 S (Willows ): documents: 1  features: 17216  hits:     1  prob: 0.114  pR: -0.891
+Willows_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 3  unk_features: 112
+   0 S (Alice   ): documents: 1  features: 17136  hits:    11  prob: 0.000  pR: -7.367
+   1 S (Hound   ): documents: 1  features: 16056  hits:    12  prob: 0.000  pR: -7.363
+   2 S (Macbeth ): documents: 1  features: 15880  hits:    10  prob: 0.000  pR: -7.502
+   3 S (Willows ): documents: 1  features: 17216  hits:    87  prob: 1.000  pR:  6.929
+
+flags:         0x8c000000  ( four-way bit entropy unique crosslink learn round robin )
+Alice_frag : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 2320
+   0 S (Alice   ): documents: 1  features: 179608  hits:  2315  prob: 1.000  pR:  28.992 jumps:   5 entropy:  571.252
+   1 S (Hound   ): documents: 1  features: 186904  hits:  2218  prob: 0.000  pR: -41.938 jumps: 102 entropy: 1584.423
+   2 S (Macbeth ): documents: 1  features: 181352  hits:  2209  prob: 0.000  pR: -46.468 jumps: 111 entropy: 1693.871
+   3 S (Willows ): documents: 1  features: 190584  hits:  2252  prob: 0.000  pR: -28.992 jumps:  68 entropy: 1271.671
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 2320
+   0 S (Alice   ): documents: 1  features: 179608  hits:  2245  prob: 1.000  pR:  19.419 jumps:  75 entropy: 1250.270
+   1 S (Hound   ): documents: 1  features: 186904  hits:  2155  prob: 0.000  pR: -38.164 jumps: 165 entropy: 2172.272
+   2 S (Macbeth ): documents: 1  features: 181352  hits:  2153  prob: 0.000  pR: -39.977 jumps: 167 entropy: 2216.068
+   3 S (Willows ): documents: 1  features: 190584  hits:  2203  prob: 0.000  pR: -19.419 jumps: 117 entropy: 1719.405
+Alice_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 496
+   0 S (Alice   ): documents: 1  features: 179608  hits:   491  prob: 1.000  pR:  6.387 jumps:   5 entropy:  144.839
+   1 S (Hound   ): documents: 1  features: 186904  hits:   470  prob: 0.000  pR: -9.179 jumps:  26 entropy:  366.591
+   2 S (Macbeth ): documents: 1  features: 181352  hits:   465  prob: 0.000  pR: -12.001 jumps:  31 entropy:  434.779
+   3 S (Willows ): documents: 1  features: 190584  hits:   479  prob: 0.000  pR: -6.388 jumps:  17 entropy:  299.171
+Hound_frag : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 1712
+   0 S (Alice   ): documents: 1  features: 179608  hits:  1650  prob: 0.000  pR: -22.899 jumps:  62 entropy: 1018.545
+   1 S (Hound   ): documents: 1  features: 186904  hits:  1704  prob: 1.000  pR:  22.899 jumps:   8 entropy:  465.330
+   2 S (Macbeth ): documents: 1  features: 181352  hits:  1627  prob: 0.000  pR: -31.403 jumps:  85 entropy: 1223.983
+   3 S (Willows ): documents: 1  features: 190584  hits:  1638  prob: 0.000  pR: -26.621 jumps:  74 entropy: 1108.472
+Hound_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 1704
+   0 S (Alice   ): documents: 1  features: 179608  hits:  1619  prob: 0.000  pR: -17.482 jumps:  85 entropy: 1229.988
+   1 S (Hound   ): documents: 1  features: 186904  hits:  1661  prob: 1.000  pR:  17.408 jumps:  43 entropy:  807.636
+   2 S (Macbeth ): documents: 1  features: 181352  hits:  1598  prob: 0.000  pR: -25.628 jumps: 106 entropy: 1426.787
+   3 S (Willows ): documents: 1  features: 190584  hits:  1614  prob: 0.000  pR: -18.210 jumps:  90 entropy: 1247.576
+Hound_frag_short_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 304
+   0 S (Alice   ): documents: 1  features: 179608  hits:   284  prob: 0.000  pR: -6.007 jumps:  20 entropy:  272.331
+   1 S (Hound   ): documents: 1  features: 186904  hits:   298  prob: 1.000  pR:  6.003 jumps:   6 entropy:  127.202
+   2 S (Macbeth ): documents: 1  features: 181352  hits:   276  prob: 0.000  pR: -8.895 jumps:  28 entropy:  342.106
+   3 S (Willows ): documents: 1  features: 190584  hits:   277  prob: 0.000  pR: -8.077 jumps:  27 entropy:  322.330
+Macbeth_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 2  unk_features: 584
+   0 S (Alice   ): documents: 1  features: 179608  hits:   545  prob: 0.000  pR: -6.328 jumps:  39 entropy:  537.947
+   1 S (Hound   ): documents: 1  features: 186904  hits:   536  prob: 0.000  pR: -10.575 jumps:  48 entropy:  640.538
+   2 S (Macbeth ): documents: 1  features: 181352  hits:   555  prob: 1.000  pR:  6.328 jumps:  29 entropy:  385.058
+   3 S (Willows ): documents: 1  features: 190584  hits:   525  prob: 0.000  pR: -13.626 jumps:  59 entropy:  714.255
+Willows_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 3  unk_features: 1208
+   0 S (Alice   ): documents: 1  features: 179608  hits:  1153  prob: 0.000  pR: -19.749 jumps:  55 entropy:  858.180
+   1 S (Hound   ): documents: 1  features: 186904  hits:  1165  prob: 0.000  pR: -14.798 jumps:  43 entropy:  738.574
+   2 S (Macbeth ): documents: 1  features: 181352  hits:  1158  prob: 0.000  pR: -17.417 jumps:  50 entropy:  801.840
+   3 S (Willows ): documents: 1  features: 190584  hits:  1198  prob: 1.000  pR:  14.797 jumps:  10 entropy:  381.070
+
+flags:         0x20000000  ( four-way Hyperspace learn round robin )
+Alice_frag : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 220
+   0 S (Alice   ): documents: 1  features: 17136  hits:   210  prob: 0.982  pR:  1.732 radiance: 2.604e+00
+   1 S (Hound   ): documents: 1  features: 16056  hits:    20  prob: 0.009  pR: -2.028 radiance: 2.463e-02
+   2 S (Macbeth ): documents: 1  features: 15880  hits:    12  prob: 0.003  pR: -2.470 radiance: 8.956e-03
+   3 S (Willows ): documents: 1  features: 17216  hits:    16  prob: 0.006  pR: -2.254 radiance: 1.471e-02
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 216
+   0 S (Alice   ): documents: 1  features: 17136  hits:   176  prob: 0.979  pR:  1.672 radiance: 1.822e+00
+   1 S (Hound   ): documents: 1  features: 16056  hits:    18  prob: 0.011  pR: -1.965 radiance: 1.995e-02
+   2 S (Macbeth ): documents: 1  features: 15880  hits:    11  prob: 0.004  pR: -2.391 radiance: 7.527e-03
+   3 S (Willows ): documents: 1  features: 17216  hits:    14  prob: 0.006  pR: -2.215 radiance: 1.126e-02
+Alice_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 48
+   0 S (Alice   ): documents: 1  features: 17136  hits:    33  prob: 0.994  pR:  2.251 radiance: 6.361e-02
+   1 S (Hound   ): documents: 1  features: 16056  hits:     1  prob: 0.001  pR: -3.012 radiance: 6.210e-05
+   2 S (Macbeth ): documents: 1  features: 15880  hits:     1  prob: 0.001  pR: -3.008 radiance: 6.278e-05
+   3 S (Willows ): documents: 1  features: 17216  hits:     2  prob: 0.004  pR: -2.439 radiance: 2.317e-04
+Hound_frag : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 180
+   0 S (Alice   ): documents: 1  features: 17136  hits:    21  prob: 0.013  pR: -1.869 radiance: 2.553e-02
+   1 S (Hound   ): documents: 1  features: 16056  hits:   170  prob: 0.950  pR:  1.283 radiance: 1.818e+00
+   2 S (Macbeth ): documents: 1  features: 15880  hits:    22  prob: 0.016  pR: -1.794 radiance: 3.022e-02
+   3 S (Willows ): documents: 1  features: 17216  hits:    26  prob: 0.020  pR: -1.682 radiance: 3.897e-02
+Hound_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 180
+   0 S (Alice   ): documents: 1  features: 17136  hits:    21  prob: 0.016  pR: -1.802 radiance: 2.553e-02
+   1 S (Hound   ): documents: 1  features: 16056  hits:   157  prob: 0.942  pR:  1.213 radiance: 1.548e+00
+   2 S (Macbeth ): documents: 1  features: 15880  hits:    22  prob: 0.018  pR: -1.727 radiance: 3.022e-02
+   3 S (Willows ): documents: 1  features: 17216  hits:    26  prob: 0.024  pR: -1.614 radiance: 3.897e-02
+Hound_frag_short_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 32
+   0 S (Alice   ): documents: 1  features: 17136  hits:     2  prob: 0.018  pR: -1.739 radiance: 2.330e-04
+   1 S (Hound   ): documents: 1  features: 16056  hits:    14  prob: 0.939  pR:  1.184 radiance: 1.220e-02
+   2 S (Macbeth ): documents: 1  features: 15880  hits:     3  prob: 0.044  pR: -1.342 radiance: 5.658e-04
+   3 S (Willows ): documents: 1  features: 17216  hits:     0  prob: 0.000  pR: -999.000 radiance: 0.000e+00
+Macbeth_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 2  unk_features: 40
+   0 S (Alice   ): documents: 1  features: 17136  hits:     1  prob: 0.011  pR: -1.952 radiance: 5.822e-05
+   1 S (Hound   ): documents: 1  features: 16056  hits:     1  prob: 0.012  pR: -1.923 radiance: 6.213e-05
+   2 S (Macbeth ): documents: 1  features: 15880  hits:     9  prob: 0.966  pR:  1.456 radiance: 5.093e-03
+   3 S (Willows ): documents: 1  features: 17216  hits:     1  prob: 0.011  pR: -1.954 radiance: 5.795e-05
+Willows_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 3  unk_features: 112
+   0 S (Alice   ): documents: 1  features: 17136  hits:    11  prob: 0.015  pR: -1.811 radiance: 7.023e-03
+   1 S (Hound   ): documents: 1  features: 16056  hits:    11  prob: 0.016  pR: -1.783 radiance: 7.493e-03
+   2 S (Macbeth ): documents: 1  features: 15880  hits:    10  prob: 0.014  pR: -1.862 radiance: 6.260e-03
+   3 S (Willows ): documents: 1  features: 17216  hits:    87  prob: 0.955  pR:  1.327 radiance: 4.412e-01
+
+flags:       0x1000000000  ( four-way FSCM learn round robin )
+Alice_frag : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:   290  prob: 0.666  pR:  0.300 compression: 2109.781
+   1 S (Hound   ): documents: 1  features: 23363  hits:   290  prob: 0.109  pR: -0.912 compression:  345.825
+   2 S (Macbeth ): documents: 1  features: 22669  hits:   290  prob: 0.105  pR: -0.931 compression:  332.106
+   3 S (Willows ): documents: 1  features: 23823  hits:   290  prob: 0.120  pR: -0.865 compression:  380.502
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:   290  prob: 0.592  pR:  0.161 compression: 1437.991
+   1 S (Hound   ): documents: 1  features: 23363  hits:   290  prob: 0.137  pR: -0.801 compression:  331.993
+   2 S (Macbeth ): documents: 1  features: 22669  hits:   290  prob: 0.125  pR: -0.844 compression:  304.442
+   3 S (Willows ): documents: 1  features: 23823  hits:   290  prob: 0.146  pR: -0.766 compression:  355.570
+Alice_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:    62  prob: 0.552  pR:  0.091 compression:  208.520
+   1 S (Hound   ): documents: 1  features: 23363  hits:    62  prob: 0.198  pR: -0.608 compression:   74.747
+   2 S (Macbeth ): documents: 1  features: 22669  hits:    62  prob: 0.081  pR: -1.058 compression:   30.396
+   3 S (Willows ): documents: 1  features: 23823  hits:    62  prob: 0.169  pR: -0.691 compression:   63.883
+Hound_frag : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:   214  prob: 0.165  pR: -0.705 compression:  296.057
+   1 S (Hound   ): documents: 1  features: 23363  hits:   214  prob: 0.543  pR:  0.075 compression:  976.078
+   2 S (Macbeth ): documents: 1  features: 22669  hits:   214  prob: 0.122  pR: -0.857 compression:  219.077
+   3 S (Willows ): documents: 1  features: 23823  hits:   214  prob: 0.170  pR: -0.689 compression:  305.348
+Hound_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:   213  prob: 0.175  pR: -0.673 compression:  284.958
+   1 S (Hound   ): documents: 1  features: 23363  hits:   213  prob: 0.504  pR:  0.007 compression:  820.129
+   2 S (Macbeth ): documents: 1  features: 22669  hits:   213  prob: 0.135  pR: -0.808 compression:  219.077
+   3 S (Willows ): documents: 1  features: 23823  hits:   213  prob: 0.186  pR: -0.640 compression:  303.145
+Hound_frag_short_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 1  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:    38  prob: 0.199  pR: -0.605 compression:   41.496
+   1 S (Hound   ): documents: 1  features: 23363  hits:    38  prob: 0.456  pR: -0.076 compression:   95.155
+   2 S (Macbeth ): documents: 1  features: 22669  hits:    38  prob: 0.133  pR: -0.815 compression:   27.664
+   3 S (Willows ): documents: 1  features: 23823  hits:    38  prob: 0.212  pR: -0.570 compression:   44.228
+Macbeth_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 2  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:    73  prob: 0.174  pR: -0.677 compression:   55.328
+   1 S (Hound   ): documents: 1  features: 23363  hits:    73  prob: 0.174  pR: -0.677 compression:   55.328
+   2 S (Macbeth ): documents: 1  features: 22669  hits:    73  prob: 0.435  pR: -0.114 compression:  138.324
+   3 S (Willows ): documents: 1  features: 23823  hits:    73  prob: 0.217  pR: -0.556 compression:   69.160
+Willows_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 3  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:   151  prob: 0.162  pR: -0.715 compression:  191.444
+   1 S (Hound   ): documents: 1  features: 23363  hits:   151  prob: 0.152  pR: -0.748 compression:  179.815
+   2 S (Macbeth ): documents: 1  features: 22669  hits:   151  prob: 0.143  pR: -0.778 compression:  169.245
+   3 S (Willows ): documents: 1  features: 23823  hits:   151  prob: 0.544  pR:  0.077 compression:  644.805
+
+flags:           0x400000  ( two and two OSB Markov learn round robin )
+Alice_frag : 
+Tot succ prob: 1.000  overall_pR: 18.243201  bestmatch_index: 0  unk_features: 220
+   0 S (Alice   ): documents: 1  features: 17136  hits:   210  prob: 1.000  pR:  18.002
+   1 F (Hound   ): documents: 1  features: 16056  hits:    21  prob: 0.000  pR: -18.354
+   2 F (Macbeth ): documents: 1  features: 15880  hits:    13  prob: 0.000  pR: -18.892
+   3 S (Willows ): documents: 1  features: 17216  hits:    16  prob: 0.000  pR: -18.372
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 15.181222  bestmatch_index: 0  unk_features: 216
+   0 S (Alice   ): documents: 1  features: 17136  hits:   176  prob: 1.000  pR:  14.933
+   1 F (Hound   ): documents: 1  features: 16056  hits:    19  prob: 0.000  pR: -15.313
+   2 F (Macbeth ): documents: 1  features: 15880  hits:    12  prob: 0.000  pR: -15.763
+   3 S (Willows ): documents: 1  features: 17216  hits:    14  prob: 0.000  pR: -15.295
+Alice_frag_megatest : 
+Tot succ prob: 0.999  overall_pR: 2.864042  bestmatch_index: 0  unk_features: 48
+   0 S (Alice   ): documents: 1  features: 17136  hits:    33  prob: 0.998  pR:  2.646
+   1 F (Hound   ): documents: 1  features: 16056  hits:     1  prob: 0.001  pR: -3.165
+   2 F (Macbeth ): documents: 1  features: 15880  hits:     1  prob: 0.001  pR: -3.165
+   3 S (Willows ): documents: 1  features: 17216  hits:     2  prob: 0.001  pR: -3.051
+Hound_frag : 
+Tot succ prob: 0.000  overall_pR: -13.243497  bestmatch_index: 1  unk_features: 180
+   0 S (Alice   ): documents: 1  features: 17136  hits:    21  prob: 0.000  pR: -13.913
+   1 F (Hound   ): documents: 1  features: 16056  hits:   170  prob: 1.000  pR:  13.133
+   2 F (Macbeth ): documents: 1  features: 15880  hits:    22  prob: 0.000  pR: -13.780
+   3 S (Willows ): documents: 1  features: 17216  hits:    26  prob: 0.000  pR: -13.348
+Hound_frag_twisted : 
+Tot succ prob: 0.000  overall_pR: -11.949680  bestmatch_index: 1  unk_features: 180
+   0 S (Alice   ): documents: 1  features: 17136  hits:    21  prob: 0.000  pR: -12.619
+   1 F (Hound   ): documents: 1  features: 16056  hits:   157  prob: 1.000  pR:  11.839
+   2 F (Macbeth ): documents: 1  features: 15880  hits:    22  prob: 0.000  pR: -12.486
+   3 S (Willows ): documents: 1  features: 17216  hits:    26  prob: 0.000  pR: -12.054
+Hound_frag_short_twisted : 
+Tot succ prob: 0.090  overall_pR: -1.003110  bestmatch_index: 1  unk_features: 32
+   0 S (Alice   ): documents: 1  features: 17136  hits:     2  prob: 0.048  pR: -1.298
+   1 F (Hound   ): documents: 1  features: 16056  hits:    14  prob: 0.855  pR:  0.771
+   2 F (Macbeth ): documents: 1  features: 15880  hits:     3  prob: 0.055  pR: -1.239
+   3 S (Willows ): documents: 1  features: 17216  hits:     0  prob: 0.042  pR: -1.353
+Macbeth_frag_megatest : 
+Tot succ prob: 0.211  overall_pR: -0.573174  bestmatch_index: 2  unk_features: 40
+   0 S (Alice   ): documents: 1  features: 17136  hits:     1  prob: 0.097  pR: -0.969
+   1 F (Hound   ): documents: 1  features: 16056  hits:     1  prob: 0.096  pR: -0.974
+   2 F (Macbeth ): documents: 1  features: 15880  hits:     9  prob: 0.693  pR:  0.354
+   3 S (Willows ): documents: 1  features: 17216  hits:     1  prob: 0.114  pR: -0.891
+Willows_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 7.126108  bestmatch_index: 3  unk_features: 112
+   0 S (Alice   ): documents: 1  features: 17136  hits:    11  prob: 0.000  pR: -7.367
+   1 F (Hound   ): documents: 1  features: 16056  hits:    12  prob: 0.000  pR: -7.363
+   2 F (Macbeth ): documents: 1  features: 15880  hits:    10  prob: 0.000  pR: -7.502
+   3 S (Willows ): documents: 1  features: 17216  hits:    87  prob: 1.000  pR:  6.929
+
+flags:         0x8c000000  ( two and two bit entropy unique crosslink learn round robin )
+Alice_frag : 
+Tot succ prob: 1.000  overall_pR: 41.937837  bestmatch_index: 0  unk_features: 2320
+   0 S (Alice   ): documents: 1  features: 179608  hits:  2315  prob: 1.000  pR:  28.992 jumps:   5 entropy:  571.252
+   1 F (Hound   ): documents: 1  features: 186904  hits:  2218  prob: 0.000  pR: -41.938 jumps: 102 entropy: 1584.423
+   2 F (Macbeth ): documents: 1  features: 181352  hits:  2209  prob: 0.000  pR: -46.468 jumps: 111 entropy: 1693.871
+   3 S (Willows ): documents: 1  features: 190584  hits:  2252  prob: 0.000  pR: -28.992 jumps:  68 entropy: 1271.671
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 38.157533  bestmatch_index: 0  unk_features: 2320
+   0 S (Alice   ): documents: 1  features: 179608  hits:  2245  prob: 1.000  pR:  19.419 jumps:  75 entropy: 1250.270
+   1 F (Hound   ): documents: 1  features: 186904  hits:  2155  prob: 0.000  pR: -38.164 jumps: 165 entropy: 2172.272
+   2 F (Macbeth ): documents: 1  features: 181352  hits:  2153  prob: 0.000  pR: -39.977 jumps: 167 entropy: 2216.068
+   3 S (Willows ): documents: 1  features: 190584  hits:  2203  prob: 0.000  pR: -19.419 jumps: 117 entropy: 1719.405
+Alice_frag_megatest : 
+Tot succ prob: 1.000  overall_pR: 9.178222  bestmatch_index: 0  unk_features: 496
+   0 S (Alice   ): documents: 1  features: 179608  hits:   491  prob: 1.000  pR:  6.387 jumps:   5 entropy:  144.839
+   1 F (Hound   ): documents: 1  features: 186904  hits:   470  prob: 0.000  pR: -9.179 jumps:  26 entropy:  366.591
+   2 F (Macbeth ): documents: 1  features: 181352  hits:   465  prob: 0.000  pR: -12.001 jumps:  31 entropy:  434.779
+   3 S (Willows ): documents: 1  features: 190584  hits:   479  prob: 0.000  pR: -6.388 jumps:  17 entropy:  299.171
+Hound_frag : 
+Tot succ prob: 0.000  overall_pR: -22.898954  bestmatch_index: 1  unk_features: 1712
+   0 S (Alice   ): documents: 1  features: 179608  hits:  1650  prob: 0.000  pR: -22.899 jumps:  62 entropy: 1018.545
+   1 F (Hound   ): documents: 1  features: 186904  hits:  1704  prob: 1.000  pR:  22.899 jumps:   8 entropy:  465.330
+   2 F (Macbeth ): documents: 1  features: 181352  hits:  1627  prob: 0.000  pR: -31.403 jumps:  85 entropy: 1223.983
+   3 S (Willows ): documents: 1  features: 190584  hits:  1638  prob: 0.000  pR: -26.621 jumps:  74 entropy: 1108.472
+Hound_frag_twisted : 
+Tot succ prob: 0.000  overall_pR: -17.407810  bestmatch_index: 1  unk_features: 1704
+   0 S (Alice   ): documents: 1  features: 179608  hits:  1619  prob: 0.000  pR: -17.482 jumps:  85 entropy: 1229.988
+   1 F (Hound   ): documents: 1  features: 186904  hits:  1661  prob: 1.000  pR:  17.408 jumps:  43 entropy:  807.636
+   2 F (Macbeth ): documents: 1  features: 181352  hits:  1598  prob: 0.000  pR: -25.628 jumps: 106 entropy: 1426.787
+   3 S (Willows ): documents: 1  features: 190584  hits:  1614  prob: 0.000  pR: -18.210 jumps:  90 entropy: 1247.576
+Hound_frag_short_twisted : 
+Tot succ prob: 0.000  overall_pR: -6.003590  bestmatch_index: 1  unk_features: 304
+   0 S (Alice   ): documents: 1  features: 179608  hits:   284  prob: 0.000  pR: -6.007 jumps:  20 entropy:  272.331
+   1 F (Hound   ): documents: 1  features: 186904  hits:   298  prob: 1.000  pR:  6.003 jumps:   6 entropy:  127.202
+   2 F (Macbeth ): documents: 1  features: 181352  hits:   276  prob: 0.000  pR: -8.895 jumps:  28 entropy:  342.106
+   3 S (Willows ): documents: 1  features: 190584  hits:   277  prob: 0.000  pR: -8.077 jumps:  27 entropy:  322.330
+Macbeth_frag_megatest : 
+Tot succ prob: 0.000  overall_pR: -6.328474  bestmatch_index: 2  unk_features: 584
+   0 S (Alice   ): documents: 1  features: 179608  hits:   545  prob: 0.000  pR: -6.328 jumps:  39 entropy:  537.947
+   1 F (Hound   ): documents: 1  features: 186904  hits:   536  prob: 0.000  pR: -10.575 jumps:  48 entropy:  640.538
+   2 F (Macbeth ): documents: 1  features: 181352  hits:   555  prob: 1.000  pR:  6.328 jumps:  29 entropy:  385.058
+   3 S (Willows ): documents: 1  features: 190584  hits:   525  prob: 0.000  pR: -13.626 jumps:  59 entropy:  714.255
+Willows_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 14.797009  bestmatch_index: 3  unk_features: 1208
+   0 S (Alice   ): documents: 1  features: 179608  hits:  1153  prob: 0.000  pR: -19.749 jumps:  55 entropy:  858.180
+   1 F (Hound   ): documents: 1  features: 186904  hits:  1165  prob: 0.000  pR: -14.798 jumps:  43 entropy:  738.574
+   2 F (Macbeth ): documents: 1  features: 181352  hits:  1158  prob: 0.000  pR: -17.417 jumps:  50 entropy:  801.840
+   3 S (Willows ): documents: 1  features: 190584  hits:  1198  prob: 1.000  pR:  14.797 jumps:  10 entropy:  381.070
+
+flags:         0x20000000  ( two and two hyperspace learn round robin )
+Alice_frag : 
+Tot succ prob: 0.987  overall_pR: 1.891814  bestmatch_index: 0  unk_features: 220
+   0 S (Alice   ): documents: 1  features: 17136  hits:   210  prob: 0.982  pR:  1.732 radiance: 2.604e+00
+   1 F (Hound   ): documents: 1  features: 16056  hits:    20  prob: 0.009  pR: -2.028 radiance: 2.463e-02
+   2 F (Macbeth ): documents: 1  features: 15880  hits:    12  prob: 0.003  pR: -2.470 radiance: 8.956e-03
+   3 S (Willows ): documents: 1  features: 17216  hits:    16  prob: 0.006  pR: -2.254 radiance: 1.471e-02
+Alice_frag_twisted : 
+Tot succ prob: 0.985  overall_pR: 1.824185  bestmatch_index: 0  unk_features: 216
+   0 S (Alice   ): documents: 1  features: 17136  hits:   176  prob: 0.979  pR:  1.672 radiance: 1.822e+00
+   1 F (Hound   ): documents: 1  features: 16056  hits:    18  prob: 0.011  pR: -1.965 radiance: 1.995e-02
+   2 F (Macbeth ): documents: 1  features: 15880  hits:    11  prob: 0.004  pR: -2.391 radiance: 7.527e-03
+   3 S (Willows ): documents: 1  features: 17216  hits:    14  prob: 0.006  pR: -2.215 radiance: 1.126e-02
+Alice_frag_megatest : 
+Tot succ prob: 0.998  overall_pR: 2.708614  bestmatch_index: 0  unk_features: 48
+   0 S (Alice   ): documents: 1  features: 17136  hits:    33  prob: 0.994  pR:  2.251 radiance: 6.361e-02
+   1 F (Hound   ): documents: 1  features: 16056  hits:     1  prob: 0.001  pR: -3.012 radiance: 6.210e-05
+   2 F (Macbeth ): documents: 1  features: 15880  hits:     1  prob: 0.001  pR: -3.008 radiance: 6.278e-05
+   3 S (Willows ): documents: 1  features: 17216  hits:     2  prob: 0.004  pR: -2.439 radiance: 2.317e-04
+Hound_frag : 
+Tot succ prob: 0.034  overall_pR: -1.457167  bestmatch_index: 1  unk_features: 180
+   0 S (Alice   ): documents: 1  features: 17136  hits:    21  prob: 0.013  pR: -1.869 radiance: 2.553e-02
+   1 F (Hound   ): documents: 1  features: 16056  hits:   170  prob: 0.950  pR:  1.283 radiance: 1.818e+00
+   2 F (Macbeth ): documents: 1  features: 15880  hits:    22  prob: 0.016  pR: -1.794 radiance: 3.022e-02
+   3 S (Willows ): documents: 1  features: 17216  hits:    26  prob: 0.020  pR: -1.682 radiance: 3.897e-02
+Hound_frag_twisted : 
+Tot succ prob: 0.039  overall_pR: -1.388595  bestmatch_index: 1  unk_features: 180
+   0 S (Alice   ): documents: 1  features: 17136  hits:    21  prob: 0.016  pR: -1.802 radiance: 2.553e-02
+   1 F (Hound   ): documents: 1  features: 16056  hits:   157  prob: 0.942  pR:  1.213 radiance: 1.548e+00
+   2 F (Macbeth ): documents: 1  features: 15880  hits:    22  prob: 0.018  pR: -1.727 radiance: 3.022e-02
+   3 S (Willows ): documents: 1  features: 17216  hits:    26  prob: 0.024  pR: -1.614 radiance: 3.897e-02
+Hound_frag_short_twisted : 
+Tot succ prob: 0.018  overall_pR: -1.738748  bestmatch_index: 1  unk_features: 32
+   0 S (Alice   ): documents: 1  features: 17136  hits:     2  prob: 0.018  pR: -1.739 radiance: 2.330e-04
+   1 F (Hound   ): documents: 1  features: 16056  hits:    14  prob: 0.939  pR:  1.184 radiance: 1.220e-02
+   2 F (Macbeth ): documents: 1  features: 15880  hits:     3  prob: 0.044  pR: -1.342 radiance: 5.658e-04
+   3 S (Willows ): documents: 1  features: 17216  hits:     0  prob: 0.000  pR: -999.000 radiance: 0.000e+00
+Macbeth_frag_megatest : 
+Tot succ prob: 0.022  overall_pR: -1.647144  bestmatch_index: 2  unk_features: 40
+   0 S (Alice   ): documents: 1  features: 17136  hits:     1  prob: 0.011  pR: -1.952 radiance: 5.822e-05
+   1 F (Hound   ): documents: 1  features: 16056  hits:     1  prob: 0.012  pR: -1.923 radiance: 6.213e-05
+   2 F (Macbeth ): documents: 1  features: 15880  hits:     9  prob: 0.966  pR:  1.456 radiance: 5.093e-03
+   3 S (Willows ): documents: 1  features: 17216  hits:     1  prob: 0.011  pR: -1.954 radiance: 5.795e-05
+Willows_frag_twisted : 
+Tot succ prob: 0.970  overall_pR: 1.513073  bestmatch_index: 3  unk_features: 112
+   0 S (Alice   ): documents: 1  features: 17136  hits:    11  prob: 0.015  pR: -1.811 radiance: 7.023e-03
+   1 F (Hound   ): documents: 1  features: 16056  hits:    11  prob: 0.016  pR: -1.783 radiance: 7.493e-03
+   2 F (Macbeth ): documents: 1  features: 15880  hits:    10  prob: 0.014  pR: -1.862 radiance: 6.260e-03
+   3 S (Willows ): documents: 1  features: 17216  hits:    87  prob: 0.955  pR:  1.327 radiance: 4.412e-01
+
+flags:       0x1000000000  ( two and two FSCM learn round robin )
+Alice_frag : 
+Tot succ prob: 0.786  overall_pR: 0.565063  bestmatch_index: 0  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:   290  prob: 0.666  pR:  0.300 compression: 2109.781
+   1 F (Hound   ): documents: 1  features: 23363  hits:   290  prob: 0.109  pR: -0.912 compression:  345.825
+   2 F (Macbeth ): documents: 1  features: 22669  hits:   290  prob: 0.105  pR: -0.931 compression:  332.106
+   3 S (Willows ): documents: 1  features: 23823  hits:   290  prob: 0.120  pR: -0.865 compression:  380.502
+Alice_frag_twisted : 
+Tot succ prob: 0.738  overall_pR: 0.449962  bestmatch_index: 0  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:   290  prob: 0.592  pR:  0.161 compression: 1437.991
+   1 F (Hound   ): documents: 1  features: 23363  hits:   290  prob: 0.137  pR: -0.801 compression:  331.993
+   2 F (Macbeth ): documents: 1  features: 22669  hits:   290  prob: 0.125  pR: -0.844 compression:  304.442
+   3 S (Willows ): documents: 1  features: 23823  hits:   290  prob: 0.146  pR: -0.766 compression:  355.570
+Alice_frag_megatest : 
+Tot succ prob: 0.722  overall_pR: 0.413431  bestmatch_index: 0  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:    62  prob: 0.552  pR:  0.091 compression:  208.520
+   1 F (Hound   ): documents: 1  features: 23363  hits:    62  prob: 0.198  pR: -0.608 compression:   74.747
+   2 F (Macbeth ): documents: 1  features: 22669  hits:    62  prob: 0.081  pR: -1.058 compression:   30.396
+   3 S (Willows ): documents: 1  features: 23823  hits:    62  prob: 0.169  pR: -0.691 compression:   63.883
+Hound_frag : 
+Tot succ prob: 0.335  overall_pR: -0.298257  bestmatch_index: 1  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:   214  prob: 0.165  pR: -0.705 compression:  296.057
+   1 F (Hound   ): documents: 1  features: 23363  hits:   214  prob: 0.543  pR:  0.075 compression:  976.078
+   2 F (Macbeth ): documents: 1  features: 22669  hits:   214  prob: 0.122  pR: -0.857 compression:  219.077
+   3 S (Willows ): documents: 1  features: 23823  hits:   214  prob: 0.170  pR: -0.689 compression:  305.348
+Hound_frag_twisted : 
+Tot succ prob: 0.361  overall_pR: -0.247248  bestmatch_index: 1  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:   213  prob: 0.175  pR: -0.673 compression:  284.958
+   1 F (Hound   ): documents: 1  features: 23363  hits:   213  prob: 0.504  pR:  0.007 compression:  820.129
+   2 F (Macbeth ): documents: 1  features: 22669  hits:   213  prob: 0.135  pR: -0.808 compression:  219.077
+   3 S (Willows ): documents: 1  features: 23823  hits:   213  prob: 0.186  pR: -0.640 compression:  303.145
+Hound_frag_short_twisted : 
+Tot succ prob: 0.411  overall_pR: -0.156164  bestmatch_index: 1  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:    38  prob: 0.199  pR: -0.605 compression:   41.496
+   1 F (Hound   ): documents: 1  features: 23363  hits:    38  prob: 0.456  pR: -0.076 compression:   95.155
+   2 F (Macbeth ): documents: 1  features: 22669  hits:    38  prob: 0.133  pR: -0.815 compression:   27.664
+   3 S (Willows ): documents: 1  features: 23823  hits:    38  prob: 0.212  pR: -0.570 compression:   44.228
+Macbeth_frag_megatest : 
+Tot succ prob: 0.391  overall_pR: -0.191897  bestmatch_index: 2  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:    73  prob: 0.174  pR: -0.677 compression:   55.328
+   1 F (Hound   ): documents: 1  features: 23363  hits:    73  prob: 0.174  pR: -0.677 compression:   55.328
+   2 F (Macbeth ): documents: 1  features: 22669  hits:    73  prob: 0.435  pR: -0.114 compression:  138.324
+   3 S (Willows ): documents: 1  features: 23823  hits:    73  prob: 0.217  pR: -0.556 compression:   69.160
+Willows_frag_twisted : 
+Tot succ prob: 0.706  overall_pR: 0.379436  bestmatch_index: 3  unk_features: 0
+   0 S (Alice   ): documents: 1  features: 22451  hits:   151  prob: 0.162  pR: -0.715 compression:  191.444
+   1 F (Hound   ): documents: 1  features: 23363  hits:   151  prob: 0.152  pR: -0.748 compression:  179.815
+   2 F (Macbeth ): documents: 1  features: 22669  hits:   151  prob: 0.143  pR: -0.778 compression:  169.245
+   3 S (Willows ): documents: 1  features: 23823  hits:   151  prob: 0.544  pR:  0.077 compression:  644.805
+
+flags:                  0  ( two and two default, "." learn round robin )
+Alice_frag : 
+Tot succ prob: 0.999  overall_pR: 3.075311  bestmatch_index: 3  unk_features: 1160
+   0 S (Alice   ): documents: 1  features: 89804  hits:  1150  prob: 0.317  pR: -0.334
+   1 F (Hound   ): documents: 1  features: 93452  hits:  1132  prob: 0.001  pR: -3.075
+   2 F (Macbeth ): documents: 1  features: 90676  hits:  1121  prob: 0.000  pR: -7.361
+   3 S (Willows ): documents: 1  features: 95292  hits:  1136  prob: 0.682  pR:  0.332
+Alice_frag_twisted : 
+Tot succ prob: 1.000  overall_pR: 3.891369  bestmatch_index: 3  unk_features: 1160
+   0 S (Alice   ): documents: 1  features: 89804  hits:  1094  prob: 0.336  pR: -0.295
+   1 F (Hound   ): documents: 1  features: 93452  hits:  1043  prob: 0.000  pR: -4.015
+   2 F (Macbeth ): documents: 1  features: 90676  hits:  1067  prob: 0.000  pR: -4.498
+   3 S (Willows ): documents: 1  features: 95292  hits:  1083  prob: 0.664  pR:  0.295
+Alice_frag_megatest : 
+Tot succ prob: 0.843  overall_pR: 0.729554  bestmatch_index: 0  unk_features: 248
+   0 S (Alice   ): documents: 1  features: 89804  hits:   238  prob: 0.497  pR: -0.005
+   1 F (Hound   ): documents: 1  features: 93452  hits:   236  prob: 0.145  pR: -0.770
+   2 F (Macbeth ): documents: 1  features: 90676  hits:   229  prob: 0.012  pR: -1.919
+   3 S (Willows ): documents: 1  features: 95292  hits:   234  prob: 0.346  pR: -0.277
+Hound_frag : 
+Tot succ prob: 0.000  overall_pR: -5.111140  bestmatch_index: 1  unk_features: 856
+   0 S (Alice   ): documents: 1  features: 89804  hits:   819  prob: 0.000  pR: -6.847
+   1 F (Hound   ): documents: 1  features: 93452  hits:   846  prob: 1.000  pR:  5.109
+   2 F (Macbeth ): documents: 1  features: 90676  hits:   817  prob: 0.000  pR: -7.522
+   3 S (Willows ): documents: 1  features: 95292  hits:   815  prob: 0.000  pR: -5.119
+Hound_frag_twisted : 
+Tot succ prob: 0.000  overall_pR: -3.646402  bestmatch_index: 1  unk_features: 852
+   0 S (Alice   ): documents: 1  features: 89804  hits:   793  prob: 0.000  pR: -5.064
+   1 F (Hound   ): documents: 1  features: 93452  hits:   802  prob: 1.000  pR:  3.645
+   2 F (Macbeth ): documents: 1  features: 90676  hits:   782  prob: 0.000  pR: -6.092
+   3 S (Willows ): documents: 1  features: 95292  hits:   788  prob: 0.000  pR: -3.663
+Hound_frag_short_twisted : 
+Tot succ prob: 0.070  overall_pR: -1.121351  bestmatch_index: 1  unk_features: 152
+   0 S (Alice   ): documents: 1  features: 89804  hits:   129  prob: 0.018  pR: -1.747
+   1 F (Hound   ): documents: 1  features: 93452  hits:   143  prob: 0.897  pR:  0.938
+   2 F (Macbeth ): documents: 1  features: 90676  hits:   133  prob: 0.033  pR: -1.465
+   3 S (Willows ): documents: 1  features: 95292  hits:   133  prob: 0.053  pR: -1.255
+Macbeth_frag_megatest : 
+Tot succ prob: 0.390  overall_pR: -0.194672  bestmatch_index: 2  unk_features: 292
+   0 S (Alice   ): documents: 1  features: 89804  hits:   273  prob: 0.040  pR: -1.381
+   1 F (Hound   ): documents: 1  features: 93452  hits:   271  prob: 0.215  pR: -0.563
+   2 F (Macbeth ): documents: 1  features: 90676  hits:   276  prob: 0.395  pR: -0.184
+   3 S (Willows ): documents: 1  features: 95292  hits:   273  prob: 0.350  pR: -0.269
+Willows_frag_twisted : 
+Tot succ prob: 0.990  overall_pR: 1.981603  bestmatch_index: 3  unk_features: 604
+   0 S (Alice   ): documents: 1  features: 89804  hits:   589  prob: 0.001  pR: -3.086
+   1 F (Hound   ): documents: 1  features: 93452  hits:   591  prob: 0.010  pR: -1.982
+   2 F (Macbeth ): documents: 1  features: 90676  hits:   591  prob: 0.000  pR: -4.905
+   3 S (Willows ): documents: 1  features: 95292  hits:   594  prob: 0.989  pR:  1.948
+
+flags:         0x60000000  ( animal hyperspace unigram learn round robin )
+dog : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 1
+   0 S (mammal  ): documents: 4  features: 4  hits:     1  prob: 1.000  pR:  999.000 radiance: 5.000e-01
+cat : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 1
+   0 S (mammal  ): documents: 4  features: 4  hits:     1  prob: 1.000  pR:  999.000 radiance: 5.000e-01
+hamster : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 1
+   0 S (mammal  ): documents: 4  features: 4  hits:     1  prob: 1.000  pR:  999.000 radiance: 5.000e-01
+cow : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 1
+   0 S (mammal  ): documents: 4  features: 4  hits:     1  prob: 1.000  pR:  999.000 radiance: 5.000e-01
+snake : 
+Tot succ prob: 0.000  overall_pR: -999.000000  bestmatch_index: 0  unk_features: 1
+   0 S (mammal  ): documents: 4  features: 4  hits:     0  prob: 0.000  pR: -999.000 radiance: 0.000e+00
+
+flags:         0x60000000  ( unbalanced animal hyperspace unigram learn round robin )
+dog : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 1
+   0 S (mammal  ): documents: 4  features: 4  hits:     1  prob: 1.000  pR:  999.000 radiance: 5.000e-01
+   1 F (reptile ): documents: 1  features: 1  hits:     0  prob: 0.000  pR: -999.000 radiance: 0.000e+00
+cat : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 1
+   0 S (mammal  ): documents: 4  features: 4  hits:     1  prob: 1.000  pR:  999.000 radiance: 5.000e-01
+   1 F (reptile ): documents: 1  features: 1  hits:     0  prob: 0.000  pR: -999.000 radiance: 0.000e+00
+hamster : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 1
+   0 S (mammal  ): documents: 4  features: 4  hits:     1  prob: 1.000  pR:  999.000 radiance: 5.000e-01
+   1 F (reptile ): documents: 1  features: 1  hits:     0  prob: 0.000  pR: -999.000 radiance: 0.000e+00
+cow : 
+Tot succ prob: 1.000  overall_pR: 999.000000  bestmatch_index: 0  unk_features: 1
+   0 S (mammal  ): documents: 4  features: 4  hits:     1  prob: 1.000  pR:  999.000 radiance: 5.000e-01
+   1 F (reptile ): documents: 1  features: 1  hits:     0  prob: 0.000  pR: -999.000 radiance: 0.000e+00
+snake : 
+Tot succ prob: 0.000  overall_pR: -999.000000  bestmatch_index: 1  unk_features: 1
+   0 S (mammal  ): documents: 4  features: 4  hits:     0  prob: 0.000  pR: -999.000 radiance: 0.000e+00
+   1 F (reptile ): documents: 1  features: 1  hits:     1  prob: 1.000  pR:  999.000 radiance: 5.000e-01
+
