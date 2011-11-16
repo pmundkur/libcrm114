@@ -41,6 +41,8 @@ CFLAGS += -g
 #CFLAGS += -g -fprofile-arcs -ftest-coverage
 #LDFLAGS += -fprofile-arcs -ftest-coverage
 
+CFLAGS += -Iinclude
+
 #always use this: C99, and check source code carefully
 CFLAGS += -std=c99 -pedantic -Wall -Wextra -Wpointer-arith -Wstrict-prototypes
 #well, pretty carefully
@@ -61,7 +63,7 @@ CFLAGS += -Wno-sign-compare -Wno-overlength-strings
 #tell us when denying an inline request
 #CFLAGS += -Winline
 
-LIBHDRS =					\
+LIBHDR_FILES =					\
 crm114_lib.h					\
 crm114_sysincludes.h				\
 crm114_config.h					\
@@ -77,7 +79,9 @@ crm114_matrix_util.h				\
 crm114_svm_quad_prog.h				\
 crm114_datalib.h
 
-LIBOBJS =					\
+LIBHDRS = $(foreach hdr, $(LIBHDR_FILES), include/$(hdr))
+
+LIBOBJ_FILES =					\
 crm114_base.o					\
 crm114_markov.o					\
 crm114_markov_microgroom.o			\
@@ -97,36 +101,38 @@ crm114_strnhash.o				\
 crm114_util.o					\
 crm114_regex_tre.o
 
+LIBOBJS = $(foreach obj, $(LIBOBJ_FILES), lib/$(obj))
 
-all: test simple_demo
+LIB = lib/libcrm114.a
 
-test: test.o libcrm114.a
-	$(CC) -o test $(LDFLAGS) -Wl,-M -Wl,--cref test.o libcrm114.a -ltre -lm >test.map
+all: $(LIB) tests/test tests/simple_demo
 
-test.o: texts.h $(LIBHDRS)
+$(LIBOBJS): $(LIBHDRS) Makefile
 
-simple_demo: simple_demo.o libcrm114.a
-	$(CC) -o simple_demo $(LDFLAGS) -Wl,-M -Wl,--cref simple_demo.o libcrm114.a -ltre -lm >simple_demo.map
+# #ar cmd below has no s modifier (like ranlib).  Not needed now, partly
+# #because LIBOBJS is in the right order.
+$(LIB): $(LIBOBJS) Makefile
+	ar rc $@ $(LIBOBJS)
 
-simple_demo.o: texts.h $(LIBHDRS)
+lib/%.o: lib/%.c
+	$(CC) -c $(CFLAGS) -o $@ $<
 
-#ar cmd below has no s modifier (like ranlib).  Not needed now, partly
-#because LIBOBJS is in the right order.
-libcrm114.a: $(LIBOBJS) Makefile
-	ar rc libcrm114.a $(LIBOBJS)
+tests/test: tests/test.c tests/texts.h $(LIBHDRS)
+	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) -Wl,-M -Wl,--cref $< $(LIB) -ltre -lm >tests/test.map
 
-$(LIBOBJS): $(LIBHDRS)
+tests/simple_demo: tests/simple_demo.c tests/texts.h
+	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) -Wl,-M -Wl,--cref $< $(LIB) -ltre -lm >tests/simple_demo.map
 
 clean: clean_test clean_simple_demo clean_lib clean_profiling
 
 clean_test:
-	rm -f test test.map test.o
+	rm -f tests/test tests/test.map tests/test.o
 
 clean_simple_demo:
-	rm -f simple_demo simple_demo.map simple_demo.o simple_demo_datablock.txt
+	rm -f tests/simple_demo tests/simple_demo.map tests/simple_demo.o {,tests/}simple_demo_datablock.txt
 
 clean_lib:
-	rm -f libcrm114.a $(LIBOBJS)
+	rm -f $(LIB) $(LIBOBJS)
 
 clean_profiling:
-	rm -f gmon.out *.gcov *.gcno *.gcda
+	rm -f gmon.out *.gcov {,lib/}*.gcno {,lib/}*.gcda
