@@ -41,7 +41,7 @@ CFLAGS += -g
 #CFLAGS += -g -fprofile-arcs -ftest-coverage
 #LDFLAGS += -fprofile-arcs -ftest-coverage
 
-CFLAGS += -Iinclude
+CFLAGS += -Iinclude -fpic
 
 #always use this: C99, and check source code carefully
 CFLAGS += -std=c99 -pedantic -Wall -Wextra -Wpointer-arith -Wstrict-prototypes
@@ -103,25 +103,28 @@ crm114_regex_tre.o
 
 LIBOBJS = $(foreach obj, $(LIBOBJ_FILES), lib/$(obj))
 
-LIB = lib/libcrm114.a
+SO_NAME = libcrm114.so
+SO_VERSION = 1
+LIB_NAME = $(SO_NAME).$(SO_VERSION)
+LIB = lib/$(SO_NAME)
+LIBLD_PATH = $(abspath lib)
 
 all: $(LIB) tests/test tests/simple_demo
 
 $(LIBOBJS): $(LIBHDRS) Makefile
 
-# #ar cmd below has no s modifier (like ranlib).  Not needed now, partly
-# #because LIBOBJS is in the right order.
-$(LIB): $(LIBOBJS) Makefile
-	ar rc $@ $(LIBOBJS)
+$(LIB) lib/$(LIB_NAME): $(LIBOBJS) Makefile
+	$(CC) -shared -Wl,-soname,$(LIB_NAME) -o lib/$(LIB_NAME) $(LIBOBJS)
+	ln -sf $(LIB_NAME) $(LIB)
 
 lib/%.o: lib/%.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 tests/test: tests/test.c tests/texts.h $(LIBHDRS)
-	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) -Wl,-M -Wl,--cref $< $(LIB) -ltre -lm >tests/test.map
+	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) -Wl,-rpath,$(LIBLD_PATH) -Wl,-M -Wl,--cref $< -ltre -lm -L $(LIBLD_PATH) -lcrm114 >tests/test.map
 
 tests/simple_demo: tests/simple_demo.c tests/texts.h
-	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) -Wl,-M -Wl,--cref $< $(LIB) -ltre -lm >tests/simple_demo.map
+	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) -Wl,-rpath,$(LIBLD_PATH) -Wl,-M -Wl,--cref $< -ltre -lm -L $(LIBLD_PATH) -lcrm114 >tests/simple_demo.map
 
 clean: clean_test clean_simple_demo clean_lib clean_profiling
 
@@ -132,7 +135,7 @@ clean_simple_demo:
 	rm -f tests/simple_demo tests/simple_demo.map tests/simple_demo.o {,tests/}simple_demo_datablock.txt
 
 clean_lib:
-	rm -f $(LIB) $(LIBOBJS)
+	rm -f $(LIB) $(LIBOBJS) lib/$(LIB_NAME)
 
 clean_profiling:
 	rm -f gmon.out *.gcov {,lib/}*.gcno {,lib/}*.gcda
