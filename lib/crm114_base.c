@@ -28,6 +28,33 @@
 #include "crm114_lib.h"
 #include "crm114_internal.h"
 
+// error messages for error codes
+
+const char *crm114_strerror(CRM114_ERR err)
+{
+  switch (err)
+    {
+    case CRM114_OK:
+      return "success";
+    case CRM114_BADARG:
+      return "bad arguments";
+    case CRM114_NOMEM:
+      return "couldn't allocate memory";
+    case CRM114_REGEX_ERR:
+      return "error from regex lib";
+    case CRM114_FULL:
+      return "buffer full";
+    case CRM114_CLASS_FULL:
+      return "class data block is full, can't learn more";
+    case CRM114_OPEN_FAILED:
+      return "file open failed";
+    case CRM114_NOT_YET_IMPLEMENTED:
+      return "not yet implemented";
+    case CRM114_UNK:
+    default:
+      return "unknown error";
+    }
+}
 
 // Whether to sort/unique features before handing them to
 // classifiers. Optimistic: assumes that all feature classifiers have

@@ -283,6 +283,8 @@ typedef struct
 //  hash function for variable tables
 unsigned int crm114_strnhash (const char *str, long len);
 
+//  error string for error codes
+const char *crm114_strerror(CRM114_ERR err);
 
 //    Stuff for the vector tokenizer - used to turn text into hash vectors.
 //
