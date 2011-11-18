@@ -56,7 +56,7 @@ CB_new(PyObject *dummy, PyObject *args, PyObject *kwargs) {
   static char *kwlist[] = {"flags", "regex", "classes", "start_mem", NULL};
   if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Ks#|O!n:ControlBlock_new", kwlist,
                                    &flags, &regex, &regex_len,
-                                   PyTuple_Type, &classes, &start_mem)) {
+                                   &PyList_Type, &classes, &start_mem)) {
     Py_DECREF(self);
     return NULL;
   }
@@ -96,7 +96,7 @@ CB_new(PyObject *dummy, PyObject *args, PyObject *kwargs) {
         PyErr_SetString(ErrorObject, "invalid control block class: not a tuple");
         goto loop_error;
       }
-      if (!PyArg_ParseTuple(class, "s#O!", &nm, &nm_len, PyBool_Type, &bool)) {
+      if (!PyArg_ParseTuple(class, "s#O!", &nm, &nm_len, &PyBool_Type, &bool)) {
         PyErr_SetString(ErrorObject, "invalid control block class: invalid tuple");
         goto loop_error;
       }
@@ -234,12 +234,19 @@ inslong(PyObject *d, char *name, unsigned long long value) {
 }
 
 PyMODINIT_FUNC
-init_pycrm114_module(void) {
+initpycrm114(void) {
   PyObject *m, *d;
 
   /* Create the module. */
   m = Py_InitModule3("pycrm114", crm114_methods, module_doc);
   assert(m != NULL && PyModule_Check(m));
+
+  /* Finalize type objects. */
+  if (PyType_Ready(&CB_Type) < 0)
+    return;
+  Py_INCREF(&CB_Type);
+
+  /* Get module dict to populate it. */
   d = PyModule_GetDict(m);
   assert(d != NULL);
 
