@@ -11,35 +11,23 @@
 #undef UNUSED
 #define UNUSED(var)     ((void)&var)
 
+static PyObject *ErrorObject = NULL;
+
+/* Control block */
+
+static PyTypeObject CB_Type;
+
 typedef struct {
   PyObject_HEAD
   CRM114_CONTROLBLOCK *p_cb;
+  int nclasses;
 } CB_Object;
 
-static PyObject *ErrorObject = NULL;
-
-/*
-  ControlBlock:
-      [ pipeline ]
-  DataBlock:
-  - init(ControlBlock)
-  - learn_text(class_name, "text")
-  - size()
-  - save_binary(file)
-  - load_binary(file)
-  - classify("text") -> Result
-
-  ResultBlock:
-  - no init
-  - bunch of getters
-  - __str__() or show()
- */
-
-static PyTypeObject CB_Type;
 static PyObject *
-CB_new(PyObject *dummy, PyObject *args, PyObject *kwargs) {
+CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
   UNUSED(dummy);
   CB_Object *self;
+  CRM114_ERR cerr;
 
   if ((self = (CB_Object *)PyObject_New(CB_Object, &CB_Type)) == NULL)
     return NULL;
@@ -61,16 +49,18 @@ CB_new(PyObject *dummy, PyObject *args, PyObject *kwargs) {
     return NULL;
   }
   // Set the classifier.
-  if (crm114_cb_setflags(self->p_cb, flags) != CRM114_OK) {
-    // TODO: convert crm114 error code into useful string
-    PyErr_SetString(ErrorObject, "error setting control block flags");
+  if ((cerr = crm114_cb_setflags(self->p_cb, flags)) != CRM114_OK) {
+    (void)PyErr_Format(ErrorObject, "error setting control block flags: %s",
+                       crm114_strerror(cerr));
     goto error;
   }
   // Set classifier defaults.
   crm114_cb_setclassdefaults(self->p_cb);
   // Set the regex.
-  if (crm114_cb_setregex(self->p_cb, regex, regex_len) != CRM114_OK) {
-    PyErr_SetString(ErrorObject, "error setting control block regex");
+  if ((regex_len > 0) &&
+      (cerr = crm114_cb_setregex(self->p_cb, regex, regex_len)) != CRM114_OK) {
+    PyErr_Format(ErrorObject, "error setting control block regex: %s",
+                 crm114_strerror(cerr));
     goto error;
   }
   // Configure the optional classes.
@@ -126,6 +116,12 @@ CB_new(PyObject *dummy, PyObject *args, PyObject *kwargs) {
       PyErr_SetString(ErrorObject, "invalid control block classes: empty sequence");
       goto error;
     }
+    if (class) {
+      Py_DECREF(class);
+      PyErr_SetString(ErrorObject, "too many classes specified");
+      goto error;
+    }
+    self->nclasses = nclass;
   }
   // Set optional starting memory size.
   if (start_mem > 0)
@@ -147,8 +143,9 @@ CB_dealloc(CB_Object *self) {
 }
 
 static PyMethodDef CB_methods[] = {
-  {NULL}                        /* Sentinel          */
+  {NULL}                        /* sentinel          */
 };
+
 
 static PyTypeObject CB_Type = {
   PyVarObject_HEAD_INIT(&PyType_Type, 0)
@@ -198,6 +195,147 @@ static PyTypeObject CB_Type = {
   0                             /* tp_free           */
 };
 
+/* Data blocks */
+
+static PyTypeObject DB_Type;
+
+typedef struct {
+  PyObject_HEAD
+  CRM114_DATABLOCK *p_db;
+  int nclasses;
+} DB_Object;
+
+static PyObject *
+DB_new(PyTypeObject *type, PyObject *args, PyObject *kwargs) {
+  UNUSED(kwargs);
+  DB_Object *self;
+  CB_Object *cb;
+
+  if (!PyArg_ParseTuple(args, "O!|DataBlock_new", &CB_Type, &cb))
+    return NULL;
+  if (cb->p_cb == NULL) {
+    PyErr_SetString(ErrorObject, "no control block data found");
+    return NULL;
+  }
+  if ((self = (DB_Object *)PyObject_New(DB_Object, &DB_Type)) == NULL)
+    return NULL;
+  if ((self->p_db = crm114_new_db(cb->p_cb)) == NULL) {
+    Py_DECREF(self);
+    return PyErr_NoMemory();
+  }
+  self->nclasses = cb->nclasses;
+  return (PyObject *)self;
+}
+
+void DB_dealloc(DB_Object *self) {
+  crm114_free(self->p_db);
+  Py_TYPE(self)->tp_free((PyObject *)self);
+}
+
+/*
+  DataBlock:
+  - classify("text") -> Result
+  - save_binary(file)
+  - load_binary(file)
+
+  ResultBlock:
+  - no init
+  - bunch of getters
+  - __str__() or show()
+ */
+
+static PyObject *
+DB_learn_text(DB_Object *self, PyObject *args) {
+  const char *text; long text_len;
+  int nclass;
+  CRM114_ERR cerr;
+
+  if (!PyArg_ParseTuple(args, "ns#", &nclass, &text, &text_len))
+    return NULL;
+  if (nclass >= self->nclasses) {
+    PyErr_SetString(ErrorObject, "invalid (out of range) class");
+    return NULL;
+  }
+  if ((cerr = crm114_learn_text(&self->p_db, nclass, text, text_len)) != CRM114_OK) {
+    PyErr_Format(ErrorObject, "error learning text: %s", crm114_strerror(cerr));
+    return NULL;
+  }
+  Py_RETURN_NONE;
+}
+
+static PyObject *
+DB_classify_text(DB_Object *self, PyObject *args) {
+  const char *text; long text_len;
+  CRM114_ERR cerr;
+  CRM114_MATCHRESULT result;
+
+  if (!PyArg_ParseTuple(args, "s#", &text, &text_len))
+    return NULL;
+  if ((cerr = crm114_classify_text(self->p_db, text, text_len, &result)) != CRM114_OK) {
+    PyErr_Format(ErrorObject, "error classifying text: %s", crm114_strerror(cerr));
+    return NULL;
+  }
+  Py_RETURN_NONE;
+}
+
+static PyMethodDef DB_methods[] = {
+  {"learn_text", (PyCFunction)DB_learn_text, METH_VARARGS,
+   "learn some example text into the specified class"},
+  {"classify_text", (PyCFunction)DB_classify_text, METH_VARARGS,
+   "classify text into one of the learned classes"},
+  {NULL}                        /* sentinel          */
+};
+
+static PyTypeObject DB_Type = {
+  PyVarObject_HEAD_INIT(&PyType_Type, 0)
+  "DataBlock",                  /* tp_name           */
+  sizeof(DB_Object),            /* tp_basicsize      */
+  0,                            /* tp_itemsize       */
+
+  /* Methods */
+  (destructor)DB_dealloc,       /* tp_dealloc        */
+  0,                            /* tp_print          */
+  0,                            /* tp_getattr        */
+  0,                            /* tp_setattr        */
+  0,                            /* tp_compare        */
+  0,                            /* tp_repr           */
+
+  0,                            /* tp_as_number      */
+  0,                            /* tp_as_sequence    */
+  0,                            /* tp_as_mapping     */
+
+  0,                            /* tp_hash           */
+  0,                            /* tp_call           */
+  0,                            /* tp_str            */
+  0,                            /* tp_getattro       */
+  0,                            /* tp_setattro       */
+
+  0,                            /* tp_as_buffer      */
+  Py_TPFLAGS_DEFAULT,           /* tp_flags          */
+  0,                            /* tp_doc            */
+  0,                            /* tp_traverse       */
+  0,                            /* tp_clear          */
+  0,                            /* tp_richcompare    */
+  0,                            /* tp_weaklistoffset */
+  0,                            /* tp_iter           */
+  0,                            /* tp_iternext       */
+
+  DB_methods,                   /* tp_methods        */
+  0,                            /* tp_members        */
+  0,                            /* tp_getset         */
+  0,                            /* tp_base           */
+  0,                            /* tp_dict           */
+  0,                            /* tp_descr_get      */
+  0,                            /* tp_descr_set      */
+  0,                            /* tp_dictoffset     */
+  0,                            /* tp_init           */
+  0,                            /* tp_alloc          */
+  DB_new,                       /* tp_new            */
+  0                             /* tp_free           */
+};
+
+/* Module initialization */
+
 static char module_doc [] =
   "This module implements an interface to the libcrm114 library.\n";
 
@@ -241,10 +379,16 @@ initpycrm114(void) {
   m = Py_InitModule3("pycrm114", crm114_methods, module_doc);
   assert(m != NULL && PyModule_Check(m));
 
-  /* Finalize type objects. */
+  /* Finalize non-object types. */
   if (PyType_Ready(&CB_Type) < 0)
     return;
   Py_INCREF(&CB_Type);
+
+  /* Add module objects. */
+  if (PyType_Ready(&DB_Type) < 0)
+    return;
+  Py_INCREF(&DB_Type);
+  PyModule_AddObject(m, "DataBlock", (PyObject *)&DB_Type);
 
   /* Get module dict to populate it. */
   d = PyModule_GetDict(m);
@@ -253,7 +397,7 @@ initpycrm114(void) {
   /* Add error object. */
   ErrorObject = PyErr_NewException("pycrm114.error", NULL, NULL);
   assert(ErrorObject != NULL);
-  PyDict_SetItemString(d, "error", ErrorObject);
+  PyDict_SetItemString(d, "error",   ErrorObject);
 
   /* Add flags. */
 
