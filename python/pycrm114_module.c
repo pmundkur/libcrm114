@@ -55,21 +55,24 @@ CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
   const char *regex = NULL; int regex_len = 0;
   size_t start_mem = 0;
   PyObject *classes = NULL, *class_iter = NULL, *class = NULL; int nclass = 0;
-  static char *kwlist[] = {"flags", "regex", "classes", "start_mem", NULL};
-  if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Ks#|O!n:ControlBlock_new", kwlist,
-                                   &flags, &regex, &regex_len,
-                                   &PyList_Type, &classes, &start_mem)) {
+  static char *kwlist[] = {"flags", "classes", "regex", "start_mem", NULL};
+  if (!PyArg_ParseTupleAndKeywords(args, kwargs, "KO!|s#n:ControlBlock_new",
+				   kwlist, &flags, &PyList_Type, &classes,
+				   &regex, &regex_len, &start_mem)) {
     Py_CLEAR(self);
     return NULL;
   }
+
   // Set the classifier.
   if ((cerr = crm114_cb_setflags(self->p_cb, flags)) != CRM114_OK) {
     (void)PyErr_Format(ErrorObject, "error setting control block flags: %s",
                        crm114_strerror(cerr));
     goto error;
   }
+
   // Set classifier defaults.
   crm114_cb_setclassdefaults(self->p_cb);
+
   // Set the regex.
   if ((regex_len > 0) &&
       (cerr = crm114_cb_setregex(self->p_cb, regex, regex_len)) != CRM114_OK) {
@@ -77,69 +80,67 @@ CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
                  crm114_strerror(cerr));
     goto error;
   }
-  // Configure the optional classes.
-  if (classes) {
-    // It is not too late to increment here, since we haven't
-    // performed any Python allocation yet.
-    Py_INCREF(classes);
 
-    if ((class_iter = PyObject_GetIter(classes)) == NULL) {
-      PyErr_SetString(ErrorObject, "invalid control block classes: not an iterable");
-      Py_CLEAR(classes);
-      goto error;
+  // Configure the classes.
+
+  if ((class_iter = PyObject_GetIter(classes)) == NULL) {
+    PyErr_SetString(ErrorObject, "invalid control block classes: not an iterable");
+    Py_CLEAR(classes);
+    goto error;
+  }
+
+  for (nclass = 0;
+       (class = PyIter_Next(class_iter)) && nclass < CRM114_MAX_CLASSES;
+       nclass++) {
+
+    const char *nm = NULL; int nm_len = 0;
+    PyObject *bool = NULL;
+
+    if (!PyTuple_Check(class)) {
+      PyErr_SetString(ErrorObject, "invalid control block class: not a tuple");
+      goto loop_error;
+    }
+    if (!PyArg_ParseTuple(class, "s#O!", &nm, &nm_len, &PyBool_Type, &bool)) {
+      PyErr_SetString(ErrorObject, "invalid control block class: invalid tuple");
+      goto loop_error;
+    }
+    if (nm_len > CLASSNAME_LENGTH) {
+      PyErr_SetString(ErrorObject, "invalid control block class: class name too long");
+      goto loop_error;
     }
 
-    for (nclass = 0;
-         (class = PyIter_Next(class_iter)) && nclass < CRM114_MAX_CLASSES;
-         nclass++) {
+    // We depend on the memset in crm114_new_cb() to ensure NUL-termination.
+    strncpy(self->p_cb->class[nclass].name, nm, CLASSNAME_LENGTH);
+    self->p_cb->class[nclass].success = (bool == Py_True);
 
-      const char *nm = NULL; int nm_len = 0;
-      PyObject *bool = NULL;
+    Py_CLEAR(class);
+    continue;
 
-      if (!PyTuple_Check(class)) {
-        PyErr_SetString(ErrorObject, "invalid control block class: not a tuple");
-        goto loop_error;
-      }
-      if (!PyArg_ParseTuple(class, "s#O!", &nm, &nm_len, &PyBool_Type, &bool)) {
-        PyErr_SetString(ErrorObject, "invalid control block class: invalid tuple");
-        goto loop_error;
-      }
-      if (nm_len > CLASSNAME_LENGTH) {
-        PyErr_SetString(ErrorObject, "invalid control block class: class name too long");
-        goto loop_error;
-      }
-
-      // We depend on the memset in crm114_new_cb() to ensure NUL-termination.
-      strncpy(self->p_cb->class[nclass].name, nm, CLASSNAME_LENGTH);
-      self->p_cb->class[nclass].success = (bool == Py_True);
-
-      Py_CLEAR(class);
-      continue;
-
-    loop_error:
-      Py_CLEAR(class);
-      Py_CLEAR(class_iter);
-      Py_CLEAR(classes);
-      goto error;
-    }
-
+  loop_error:
+    Py_CLEAR(class);
     Py_CLEAR(class_iter);
     Py_CLEAR(classes);
-
-    if (nclass == 0) {
-      PyErr_SetString(ErrorObject, "invalid control block classes: empty sequence");
-      goto error;
-    }
-    if (class) {
-      Py_CLEAR(class);
-      PyErr_SetString(ErrorObject, "too many classes specified");
-      goto error;
-    }
-    self->nclasses = nclass;
+    goto error;
   }
+
+  Py_CLEAR(class_iter);
+  Py_CLEAR(classes);
+
+  if (nclass == 0) {
+    PyErr_SetString(ErrorObject, "invalid control block classes: empty sequence");
+    goto error;
+  }
+  if (class) {
+    Py_CLEAR(class);
+    PyErr_SetString(ErrorObject, "too many classes specified");
+    goto error;
+  }
+  self->nclasses = nclass;
+
   // Set optional starting memory size.
   if (start_mem > 0)
     self->p_cb->datablock_size = start_mem;
+
   // Finish internal configuration.
   crm114_cb_setblockdefaults (self->p_cb);
 
