@@ -11,17 +11,31 @@
 #undef UNUSED
 #define UNUSED(var)     ((void)&var)
 
+/* Objects and Types */
+
 static PyObject *ErrorObject = NULL;
 
-/* Control block */
-
 static PyTypeObject CB_Type;
-
 typedef struct {
   PyObject_HEAD
   CRM114_CONTROLBLOCK *p_cb;
   int nclasses;
 } CB_Object;
+
+static PyTypeObject DB_Type;
+typedef struct {
+  PyObject_HEAD
+  CRM114_DATABLOCK *p_db;
+  int nclasses;
+} DB_Object;
+
+static PyTypeObject Result_Type;
+typedef struct {
+  PyObject_HEAD
+  CRM114_MATCHRESULT mr;
+} Result_Object;
+
+/* Control block */
 
 static PyObject *
 CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
@@ -33,7 +47,7 @@ CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
     return NULL;
 
   if ((self->p_cb = crm114_new_cb()) == NULL) {
-    Py_DECREF(self);
+    Py_CLEAR(self);
     return PyErr_NoMemory();
   }
 
@@ -45,7 +59,7 @@ CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
   if (!PyArg_ParseTupleAndKeywords(args, kwargs, "Ks#|O!n:ControlBlock_new", kwlist,
                                    &flags, &regex, &regex_len,
                                    &PyList_Type, &classes, &start_mem)) {
-    Py_DECREF(self);
+    Py_CLEAR(self);
     return NULL;
   }
   // Set the classifier.
@@ -71,7 +85,7 @@ CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
 
     if ((class_iter = PyObject_GetIter(classes)) == NULL) {
       PyErr_SetString(ErrorObject, "invalid control block classes: not an iterable");
-      Py_DECREF(classes);
+      Py_CLEAR(classes);
       goto error;
     }
 
@@ -99,25 +113,25 @@ CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
       strncpy(self->p_cb->class[nclass].name, nm, CLASSNAME_LENGTH);
       self->p_cb->class[nclass].success = (bool == Py_True);
 
-      Py_DECREF(class);
+      Py_CLEAR(class);
       continue;
 
     loop_error:
-      Py_DECREF(class);
-      Py_DECREF(class_iter);
-      Py_DECREF(classes);
+      Py_CLEAR(class);
+      Py_CLEAR(class_iter);
+      Py_CLEAR(classes);
       goto error;
     }
 
-    Py_DECREF(class_iter);
-    Py_DECREF(classes);
+    Py_CLEAR(class_iter);
+    Py_CLEAR(classes);
 
     if (nclass == 0) {
       PyErr_SetString(ErrorObject, "invalid control block classes: empty sequence");
       goto error;
     }
     if (class) {
-      Py_DECREF(class);
+      Py_CLEAR(class);
       PyErr_SetString(ErrorObject, "too many classes specified");
       goto error;
     }
@@ -132,7 +146,7 @@ CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
   return (PyObject *)self;
 
  error:
-  Py_DECREF(self);
+  Py_CLEAR(self);
   return NULL;
 }
 
@@ -146,10 +160,9 @@ static PyMethodDef CB_methods[] = {
   {NULL}                        /* sentinel          */
 };
 
-
 static PyTypeObject CB_Type = {
   PyVarObject_HEAD_INIT(&PyType_Type, 0)
-  "ControlBlock",               /* tp_name           */
+  "pycrm114.ControlBlock",      /* tp_name           */
   sizeof(CB_Object),            /* tp_basicsize      */
   0,                            /* tp_itemsize       */
 
@@ -197,14 +210,6 @@ static PyTypeObject CB_Type = {
 
 /* Data blocks */
 
-static PyTypeObject DB_Type;
-
-typedef struct {
-  PyObject_HEAD
-  CRM114_DATABLOCK *p_db;
-  int nclasses;
-} DB_Object;
-
 static PyObject *
 DB_new(PyTypeObject *type, PyObject *args, PyObject *kwargs) {
   UNUSED(kwargs);
@@ -220,7 +225,7 @@ DB_new(PyTypeObject *type, PyObject *args, PyObject *kwargs) {
   if ((self = (DB_Object *)PyObject_New(DB_Object, &DB_Type)) == NULL)
     return NULL;
   if ((self->p_db = crm114_new_db(cb->p_cb)) == NULL) {
-    Py_DECREF(self);
+    Py_CLEAR(self);
     return PyErr_NoMemory();
   }
   self->nclasses = cb->nclasses;
@@ -233,20 +238,21 @@ void DB_dealloc(DB_Object *self) {
 }
 
 /*
+  TODO:
+
   DataBlock:
-  - classify("text") -> Result
   - save_binary(file)
   - load_binary(file)
 
   ResultBlock:
-  - no init
-  - bunch of getters
-  - __str__() or show()
- */
+  - score objects
+  - scores()/matches()
+
+*/
 
 static PyObject *
 DB_learn_text(DB_Object *self, PyObject *args) {
-  const char *text; long text_len;
+  const char *text; int text_len;
   int nclass;
   CRM114_ERR cerr;
 
@@ -263,19 +269,23 @@ DB_learn_text(DB_Object *self, PyObject *args) {
   Py_RETURN_NONE;
 }
 
+static Result_Object *Result_new();
 static PyObject *
 DB_classify_text(DB_Object *self, PyObject *args) {
-  const char *text; long text_len;
+  const char *text; int text_len;
   CRM114_ERR cerr;
-  CRM114_MATCHRESULT result;
+  Result_Object *result;
+
+  if ((result = Result_new()) == NULL)
+    return NULL;
 
   if (!PyArg_ParseTuple(args, "s#", &text, &text_len))
     return NULL;
-  if ((cerr = crm114_classify_text(self->p_db, text, text_len, &result)) != CRM114_OK) {
+  if ((cerr = crm114_classify_text(self->p_db, text, text_len, &(result->mr))) != CRM114_OK) {
     PyErr_Format(ErrorObject, "error classifying text: %s", crm114_strerror(cerr));
     return NULL;
   }
-  Py_RETURN_NONE;
+  return (PyObject *)result;
 }
 
 static PyMethodDef DB_methods[] = {
@@ -288,7 +298,7 @@ static PyMethodDef DB_methods[] = {
 
 static PyTypeObject DB_Type = {
   PyVarObject_HEAD_INIT(&PyType_Type, 0)
-  "DataBlock",                  /* tp_name           */
+  "pycrm114.DataBlock",         /* tp_name           */
   sizeof(DB_Object),            /* tp_basicsize      */
   0,                            /* tp_itemsize       */
 
@@ -334,6 +344,156 @@ static PyTypeObject DB_Type = {
   0                             /* tp_free           */
 };
 
+/* Match result */
+
+/* This allocator is purely for internal use.  It is not in the
+   Result_methods table so that the only way results can be created is
+   as results from the classify function.  */
+static Result_Object *
+Result_new() {
+  return (Result_Object *)PyObject_New(Result_Object, &Result_Type);
+}
+
+static void
+Result_dealloc(Result_Object *self) {
+  Py_TYPE(self)->tp_free((PyObject *)self);
+}
+
+static PyObject *
+Result_best_class(Result_Object *self) {
+  int idx = self->mr.bestmatch_index;
+  return PyString_FromString(self->mr.class[idx].name);
+}
+
+static PyObject *
+Result_scores(Result_Object *self) {
+  int i;
+  PyObject *list;
+
+  if ((list = PyList_New(0)) == NULL)
+    return NULL;
+
+  for (i = 0; i < self->mr.how_many_classes; i++) {
+    PyObject *d = NULL;
+    PyObject *name = NULL, *pR = NULL, *prob = NULL;
+    PyObject *docs = NULL, *feats = NULL, *hits = NULL, *succ = NULL;
+
+    if ((d = PyDict_New()) == NULL)
+      goto error;
+
+    if ((name = PyString_FromString(self->mr.class[i].name)) == NULL)
+      goto loop_error;
+    if (PyDict_SetItemString(d, "name", name) < 0)
+      goto loop_error;
+
+    if ((pR = PyFloat_FromDouble(self->mr.class[i].pR)) == NULL)
+      goto loop_error;
+    if (PyDict_SetItemString(d, "pR", pR) < 0)
+      goto loop_error;
+
+    if ((prob = PyFloat_FromDouble(self->mr.class[i].prob)) == NULL)
+      goto loop_error;
+    if (PyDict_SetItemString(d, "prob", prob) < 0)
+      goto loop_error;
+
+    if ((docs = PyInt_FromLong(self->mr.class[i].documents)) == NULL)
+      goto loop_error;
+    if (PyDict_SetItemString(d, "documents", docs) < 0)
+      goto loop_error;
+
+    if ((feats = PyInt_FromLong(self->mr.class[i].features)) == NULL)
+      goto loop_error;
+    if (PyDict_SetItemString(d, "features", feats) < 0)
+      goto loop_error;
+
+    if ((hits = PyInt_FromLong(self->mr.class[i].hits)) == NULL)
+      goto loop_error;
+    if (PyDict_SetItemString(d, "hits", hits) < 0)
+      goto loop_error;
+
+    if ((succ = PyInt_FromLong(self->mr.class[i].success)) == NULL)
+      goto loop_error;
+    if (PyDict_SetItemString(d, "success", succ) < 0)
+      goto loop_error;
+
+    if (PyList_Append(list, d) < 0)
+      goto loop_error;
+
+  loop_error:
+    Py_CLEAR(succ);
+    Py_CLEAR(hits);
+    Py_CLEAR(feats);
+    Py_CLEAR(docs);
+    Py_CLEAR(prob);
+    Py_CLEAR(pR);
+    Py_CLEAR(name);
+    Py_CLEAR(d);
+    goto error;
+  }
+
+  return list;
+
+ error:
+  Py_CLEAR(list);
+  return NULL;
+}
+
+static PyMethodDef Result_methods[] = {
+  {"best_class", (PyCFunction)Result_best_class, METH_NOARGS,
+   "name of best matching class"},
+  {"scores", (PyCFunction)Result_scores, METH_NOARGS,
+   "match scores for each class"},
+  {NULL}                        /* sentinel          */
+};
+
+static PyTypeObject Result_Type = {
+  PyVarObject_HEAD_INIT(&PyType_Type, 0)
+  "pycrm114.MatchResult",       /* tp_name           */
+  sizeof(Result_Object),        /* tp_basicsize      */
+  0,                            /* tp_itemsize       */
+
+  /* Methods */
+  (destructor)Result_dealloc,   /* tp_dealloc        */
+  0,                            /* tp_print          */
+  0,                            /* tp_getattr        */
+  0,                            /* tp_setattr        */
+  0,                            /* tp_compare        */
+  0,                            /* tp_repr           */
+
+  0,                            /* tp_as_number      */
+  0,                            /* tp_as_sequence    */
+  0,                            /* tp_as_mapping     */
+
+  0,                            /* tp_hash           */
+  0,                            /* tp_call           */
+  0,                            /* tp_str            */
+  0,                            /* tp_getattro       */
+  0,                            /* tp_setattro       */
+
+  0,                            /* tp_as_buffer      */
+  Py_TPFLAGS_DEFAULT,           /* tp_flags          */
+  0,                            /* tp_doc            */
+  0,                            /* tp_traverse       */
+  0,                            /* tp_clear          */
+  0,                            /* tp_richcompare    */
+  0,                            /* tp_weaklistoffset */
+  0,                            /* tp_iter           */
+  0,                            /* tp_iternext       */
+
+  Result_methods,               /* tp_methods        */
+  0,                            /* tp_members        */
+  0,                            /* tp_getset         */
+  0,                            /* tp_base           */
+  0,                            /* tp_dict           */
+  0,                            /* tp_descr_get      */
+  0,                            /* tp_descr_set      */
+  0,                            /* tp_dictoffset     */
+  0,                            /* tp_init           */
+  0,                            /* tp_alloc          */
+  0,                            /* tp_new            */
+  0                             /* tp_free           */
+};
+
 /* Module initialization */
 
 static char module_doc [] =
@@ -356,8 +516,8 @@ insobj(PyObject *d, char *name, PyObject *value) {
   assert(PyDict_GetItem(d, key) == NULL);
   if (PyDict_SetItem(d, key, value) != 0)
     goto error;
-  Py_DECREF(key);
-  Py_DECREF(value);
+  Py_CLEAR(key);
+  Py_CLEAR(value);
   return;
 
  error:
@@ -385,10 +545,16 @@ initpycrm114(void) {
   Py_INCREF(&CB_Type);
 
   /* Add module objects. */
+
   if (PyType_Ready(&DB_Type) < 0)
     return;
   Py_INCREF(&DB_Type);
   PyModule_AddObject(m, "DataBlock", (PyObject *)&DB_Type);
+
+  if (PyType_Ready(&Result_Type) < 0)
+    return;
+  Py_INCREF(&Result_Type);
+  PyModule_AddObject(m, "MatchResult", (PyObject *)&Result_Type);
 
   /* Get module dict to populate it. */
   d = PyModule_GetDict(m);
@@ -429,7 +595,5 @@ initpycrm114(void) {
   inslong(d, "CRM114_ERASE", CRM114_ERASE);
   inslong(d, "CRM114_PCA", CRM114_PCA);
   inslong(d, "CRM114_BOOST", CRM114_BOOST);
-
-  //  inslong(d, "", );
 
 }
