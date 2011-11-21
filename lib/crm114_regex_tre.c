@@ -21,22 +21,22 @@
 
 int crm114__regncomp(regex_t *preg, const char *regex, long regex_len, int cflags)
 {
-  return regncomp(preg, regex, regex_len, cflags);
+  return tre_regncomp(preg, regex, regex_len, cflags);
 }
 
 int crm114__regnexec(const regex_t *preg, const char *string, long string_len,
 		 size_t nmatch, regmatch_t pmatch[], int eflags)
 {
-  return regnexec(preg, string, string_len, nmatch, pmatch, eflags);
+  return tre_regnexec(preg, string, string_len, nmatch, pmatch, eflags);
 }
 
 size_t crm114__regerror(int errcode, const regex_t *preg, char *errbuf,
 		       size_t errbuf_size)
 {
-  return regerror(errcode, preg, errbuf, errbuf_size);
+  return tre_regerror(errcode, preg, errbuf, errbuf_size);
 }
 
 void crm114__regfree(regex_t *preg)
 {
-  regfree(preg);
+  tre_regfree(preg);
 }
