@@ -371,7 +371,7 @@ Result_scores(Result_Object *self) {
   int i;
   PyObject *list;
 
-  if ((list = PyList_New(0)) == NULL)
+  if ((list = PyList_New(self->mr.how_many_classes)) == NULL)
     return NULL;
 
   for (i = 0; i < self->mr.how_many_classes; i++) {
@@ -417,8 +417,8 @@ Result_scores(Result_Object *self) {
     if (PyDict_SetItemString(d, "success", succ) < 0)
       goto loop_error;
 
-    if (PyList_Append(list, d) < 0)
-      goto loop_error;
+    PyList_SET_ITEM(list, i, d);
+    continue;
 
   loop_error:
     Py_CLEAR(succ);
