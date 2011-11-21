@@ -270,7 +270,7 @@ DB_learn_text(DB_Object *self, PyObject *args) {
   Py_RETURN_NONE;
 }
 
-static Result_Object *Result_new();
+static Result_Object *Result_new(void);
 static PyObject *
 DB_classify_text(DB_Object *self, PyObject *args) {
   const char *text; int text_len;
