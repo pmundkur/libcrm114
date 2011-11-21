@@ -121,10 +121,10 @@ lib/%.o: lib/%.c
 	$(CC) -c $(CFLAGS) -o $@ $<
 
 tests/test: tests/test.c tests/texts.h $(LIBHDRS)
-	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) -Wl,-rpath,$(LIBLD_PATH) -Wl,-M -Wl,--cref $< -ltre -lm -L $(LIBLD_PATH) -lcrm114 >tests/test.map
+	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) -Wl,-rpath,$(LIBLD_PATH) -Wl,-M -Wl,--cref $< -ltre -lm -L $(LIBLD_PATH) -lcrm114 -ldl >tests/test.map
 
 tests/simple_demo: tests/simple_demo.c tests/texts.h
-	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) -Wl,-rpath,$(LIBLD_PATH) -Wl,-M -Wl,--cref $< -ltre -lm -L $(LIBLD_PATH) -lcrm114 >tests/simple_demo.map
+	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) -Wl,-rpath,$(LIBLD_PATH) -Wl,-M -Wl,--cref $< -ltre -lm -L $(LIBLD_PATH) -lcrm114 -ldl >tests/simple_demo.map
 
 clean: clean_test clean_simple_demo clean_lib clean_profiling
 
