@@ -19,14 +19,12 @@ static PyTypeObject CB_Type;
 typedef struct {
   PyObject_HEAD
   CRM114_CONTROLBLOCK *p_cb;
-  int nclasses;
 } CB_Object;
 
 static PyTypeObject DB_Type;
 typedef struct {
   PyObject_HEAD
   CRM114_DATABLOCK *p_db;
-  int nclasses;
 } DB_Object;
 
 static PyTypeObject Result_Type;
@@ -135,7 +133,7 @@ CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
     PyErr_SetString(ErrorObject, "too many classes specified");
     goto error;
   }
-  self->nclasses = nclass;
+  self->p_cb->how_many_classes = nclass;
 
   // Set optional starting memory size.
   if (start_mem > 0)
@@ -229,7 +227,6 @@ DB_new(PyTypeObject *type, PyObject *args, PyObject *kwargs) {
     Py_CLEAR(self);
     return PyErr_NoMemory();
   }
-  self->nclasses = cb->nclasses;
   return (PyObject *)self;
 }
 
@@ -246,7 +243,7 @@ DB_learn_text(DB_Object *self, PyObject *args) {
 
   if (!PyArg_ParseTuple(args, "ns#", &nclass, &text, &text_len))
     return NULL;
-  if (nclass >= self->nclasses) {
+  if (nclass >= self->p_db->cb.how_many_classes) {
     PyErr_SetString(ErrorObject, "invalid (out of range) class");
     return NULL;
   }
@@ -292,6 +289,26 @@ DB_dump(DB_Object *self, PyObject *args) {
   Py_RETURN_NONE;
 }
 
+static PyObject *
+DB_load(PyObject *type, PyObject *args) {
+  PyObject *fpo;
+  DB_Object *self;
+  FILE *fp;
+  CRM114_DATABLOCK *p_db;
+
+  if (!PyArg_ParseTuple(args, "O!", &PyFile_Type, &fpo))
+    return NULL;
+  fp = PyFile_AsFile(fpo);
+  if ((p_db = crm114_db_read_text_fp(fp)) == NULL) {
+    PyErr_Format(ErrorObject, "error reading data block");
+    return NULL;
+  }
+  if ((self = (DB_Object *)PyObject_New(DB_Object, &DB_Type)) == NULL)
+    return NULL;
+  self->p_db = p_db;
+  return (PyObject *)self;
+}
+
 static PyMethodDef DB_methods[] = {
   {"learn_text", (PyCFunction)DB_learn_text, METH_VARARGS,
    "learn some example text into the specified class"},
@@ -299,6 +316,8 @@ static PyMethodDef DB_methods[] = {
    "classify text into one of the learned classes"},
   {"dump", (PyCFunction)DB_dump, METH_VARARGS,
    "store data block into a file"},
+  {"load", (PyCFunction)DB_load, METH_CLASS | METH_VARARGS,
+   "load data block from a file"},
   {NULL}                        /* sentinel          */
 };
 
