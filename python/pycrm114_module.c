@@ -155,7 +155,47 @@ CB_dealloc(CB_Object *self) {
   Py_TYPE(self)->tp_free((PyObject *)self);
 }
 
+static PyObject *
+CB_dump(CB_Object *self, PyObject *args) {
+  PyObject *fpo;
+  FILE *fp;
+  CRM114_ERR cerr;
+
+  if (!PyArg_ParseTuple(args, "O!", &PyFile_Type, &fpo))
+    return NULL;
+  fp = PyFile_AsFile(fpo);
+  if ((cerr = crm114_cb_write_text_fp(self->p_cb, fp)) != CRM114_OK) {
+    PyErr_Format(ErrorObject, "error storing control block: %s", crm114_strerror(cerr));
+    return NULL;
+  }
+  Py_RETURN_NONE;
+}
+
+static PyObject *
+CB_load(PyObject *type, PyObject *args) {
+  PyObject *fpo;
+  CB_Object *self;
+  FILE *fp;
+  CRM114_CONTROLBLOCK *p_cb;
+
+  if (!PyArg_ParseTuple(args, "O!", &PyFile_Type, &fpo))
+    return NULL;
+  fp = PyFile_AsFile(fpo);
+  if ((p_cb = crm114_cb_read_text_fp(fp)) == NULL) {
+    PyErr_Format(ErrorObject, "error reading control block");
+    return NULL;
+  }
+  if ((self = (CB_Object *)PyObject_New(CB_Object, &CB_Type)) == NULL)
+    return NULL;
+  self->p_cb = p_cb;
+  return (PyObject *)self;
+}
+
 static PyMethodDef CB_methods[] = {
+  {"dump", (PyCFunction)CB_dump, METH_VARARGS,
+   "store data block into a file"},
+  {"load", (PyCFunction)CB_load, METH_CLASS | METH_VARARGS,
+   "load data block from a file"},
   {NULL}                        /* sentinel          */
 };
 
