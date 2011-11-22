@@ -203,7 +203,7 @@ static PyTypeObject CB_Type = {
   0,                            /* tp_dictoffset     */
   0,                            /* tp_init           */
   0,                            /* tp_alloc          */
-  0,                            /* tp_new            */
+  CB_new,                       /* tp_new            */
   0                             /* tp_free           */
 };
 
@@ -546,7 +546,6 @@ static char module_doc [] =
   "This module implements an interface to the libcrm114 library.\n";
 
 static PyMethodDef crm114_methods[] = {
-  {"ControlBlock", (PyCFunction) CB_new, METH_VARARGS | METH_KEYWORDS, NULL},
   {NULL, NULL, 0, NULL}
 };
 
@@ -585,13 +584,11 @@ initpycrm114(void) {
   m = Py_InitModule3("pycrm114", crm114_methods, module_doc);
   assert(m != NULL && PyModule_Check(m));
 
-  /* Finalize non-object types. */
+  /* Add module objects. */
   if (PyType_Ready(&CB_Type) < 0)
     return;
   Py_INCREF(&CB_Type);
-
-  /* Add module objects. */
-
+  PyModule_AddObject(m, "ControlBlock", (PyObject *)&CB_Type);
   if (PyType_Ready(&DB_Type) < 0)
     return;
   Py_INCREF(&DB_Type);
