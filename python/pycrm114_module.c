@@ -361,9 +361,24 @@ Result_dealloc(Result_Object *self) {
 }
 
 static PyObject *
-Result_best_class(Result_Object *self) {
+Result_best_match(Result_Object *self) {
   int idx = self->mr.bestmatch_index;
   return PyString_FromString(self->mr.class[idx].name);
+}
+
+static PyObject *
+Result_tsprob(Result_Object *self) {
+  return PyFloat_FromDouble(self->mr.tsprob);
+}
+
+static PyObject *
+Result_overall_pR(Result_Object *self) {
+  return PyFloat_FromDouble(self->mr.overall_pR);
+}
+
+static PyObject *
+Result_unk_features(Result_Object *self) {
+  return PyInt_FromLong(self->mr.unk_features);
 }
 
 static PyObject *
@@ -440,8 +455,14 @@ Result_scores(Result_Object *self) {
 }
 
 static PyMethodDef Result_methods[] = {
-  {"best_class", (PyCFunction)Result_best_class, METH_NOARGS,
+  {"best_match", (PyCFunction)Result_best_match, METH_NOARGS,
    "name of best matching class"},
+  {"tsprob", (PyCFunction)Result_tsprob, METH_NOARGS,
+   "total success probability"},
+  {"overall_pR", (PyCFunction)Result_overall_pR, METH_NOARGS,
+   "overall_pR"},
+  {"unk_features", (PyCFunction)Result_unk_features, METH_NOARGS,
+   "unknown features"},
   {"scores", (PyCFunction)Result_scores, METH_NOARGS,
    "match scores for each class"},
   {NULL}                        /* sentinel          */
