@@ -1162,8 +1162,7 @@ static int read_text_string_fp(char buf[], int bufsize, FILE *fp)
   return ret;
 }
 
-// Returns T/F success/failure.
-int crm114_cb_write_text_fp(const CRM114_CONTROLBLOCK *cb, FILE *fp)
+CRM114_ERR crm114_cb_write_text_fp(const CRM114_CONTROLBLOCK *cb, FILE *fp)
 {
   int row, col;
   int i;
@@ -1228,11 +1227,10 @@ int crm114_cb_write_text_fp(const CRM114_CONTROLBLOCK *cb, FILE *fp)
 	      cb->class[i].features);
     }
 
-  return TRUE;			// optimistic, aren't we?
+  return CRM114_OK;			// optimistic, aren't we?
 }
 
-// Returns T/F success/failure.
-int crm114_cb_write_text(const CRM114_CONTROLBLOCK *cb, const char filename[])
+CRM114_ERR crm114_cb_write_text(const CRM114_CONTROLBLOCK *cb, const char filename[])
 {
   FILE *fp;
   int ret;
@@ -1243,13 +1241,12 @@ int crm114_cb_write_text(const CRM114_CONTROLBLOCK *cb, const char filename[])
       fclose(fp);
     }
   else
-    ret = FALSE;
+    ret = CRM114_OPEN_FAILED;
 
   return ret;
 }
 
-// Returns T/F success/failure.
-int crm114_db_write_text_fp(const CRM114_DATABLOCK *db, FILE *fp)
+CRM114_ERR crm114_db_write_text_fp(const CRM114_DATABLOCK *db, FILE *fp)
 {
   (void)crm114_cb_write_text_fp(&db->cb, fp);
   // write learned data
@@ -1283,8 +1280,7 @@ int crm114_db_write_text_fp(const CRM114_DATABLOCK *db, FILE *fp)
   return CRM114_OK;
 }
 
-// Returns T/F success/failure.
-int crm114_db_write_text(const CRM114_DATABLOCK *db, const char filename[])
+CRM114_ERR crm114_db_write_text(const CRM114_DATABLOCK *db, const char filename[])
 {
   FILE *fp;
   int ret;
