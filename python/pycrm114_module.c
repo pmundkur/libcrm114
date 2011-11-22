@@ -238,19 +238,6 @@ void DB_dealloc(DB_Object *self) {
   Py_TYPE(self)->tp_free((PyObject *)self);
 }
 
-/*
-  TODO:
-
-  DataBlock:
-  - save_binary(file)
-  - load_binary(file)
-
-  ResultBlock:
-  - score objects
-  - scores()/matches()
-
-*/
-
 static PyObject *
 DB_learn_text(DB_Object *self, PyObject *args) {
   const char *text; int text_len;
@@ -289,11 +276,29 @@ DB_classify_text(DB_Object *self, PyObject *args) {
   return (PyObject *)result;
 }
 
+static PyObject *
+DB_dump(DB_Object *self, PyObject *args) {
+  PyObject *fpo;
+  FILE *fp;
+  CRM114_ERR cerr;
+
+  if (!PyArg_ParseTuple(args, "O!", &PyFile_Type, &fpo))
+    return NULL;
+  fp = PyFile_AsFile(fpo);
+  if ((cerr = crm114_db_write_text_fp(self->p_db, fp)) != CRM114_OK) {
+    PyErr_Format(ErrorObject, "error storing data block: %s", crm114_strerror(cerr));
+    return NULL;
+  }
+  Py_RETURN_NONE;
+}
+
 static PyMethodDef DB_methods[] = {
   {"learn_text", (PyCFunction)DB_learn_text, METH_VARARGS,
    "learn some example text into the specified class"},
   {"classify_text", (PyCFunction)DB_classify_text, METH_VARARGS,
    "classify text into one of the learned classes"},
+  {"dump", (PyCFunction)DB_dump, METH_VARARGS,
+   "store data block into a file"},
   {NULL}                        /* sentinel          */
 };
 
