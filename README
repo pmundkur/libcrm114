@@ -33,3 +33,12 @@ your data into memory on your own. You still need TRE. You do pay a
 CSV-like file, but since you can then reuse the classifier for as many
 documents as you want, in the long term this cost is amortized down to
 zero and you get significant speedup.
+
+
+Dependencies
+
+Debian/Ubuntu: libtre5, libtre-dev
+
+Building
+
+$ make && cd python && python setup build
