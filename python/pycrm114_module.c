@@ -72,8 +72,8 @@ CB_new(PyTypeObject *dummy, PyObject *args, PyObject *kwargs) {
   PyObject *classes = NULL, *class_iter = NULL, *class = NULL; int nclass = 0;
   static char *kwlist[] = {"flags", "classes", "regex", "start_mem", NULL};
   if (!PyArg_ParseTupleAndKeywords(args, kwargs, "KO!|s#n:ControlBlock_new",
-				   kwlist, &flags, &PyList_Type, &classes,
-				   &regex, &regex_len, &start_mem)) {
+                                   kwlist, &flags, &PyList_Type, &classes,
+                                   &regex, &regex_len, &start_mem)) {
     Py_CLEAR(self);
     return NULL;
   }
