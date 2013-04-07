@@ -114,7 +114,7 @@ all: $(LIB) tests/test tests/simple_demo
 $(LIBOBJS): $(LIBHDRS) Makefile
 
 $(LIB) lib/$(LIB_NAME): $(LIBOBJS) Makefile
-	$(CC) -shared -Wl,-soname,$(LIB_NAME) -o lib/$(LIB_NAME) $(LIBOBJS)
+	$(CC) -shared -Wl,-soname,$(LIB_NAME) -o lib/$(LIB_NAME) $(LIBOBJS) -ltre
 	ln -sf $(LIB_NAME) $(LIB)
 
 lib/%.o: lib/%.c
